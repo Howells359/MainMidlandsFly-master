@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MainMidlandsFly.Models.Aircraft>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Aircraft</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Aircraft" asp-action="Index">
+    <p>
+        Title: <input type="text" name="IDSEARCH">
+        <input type="submit" value="Search For Results" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AircraftID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Colour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaxSeat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaxCarry)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AircraftID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxSeat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxCarry)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
