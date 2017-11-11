@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MainMidlandsFly.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
+    [Authorize]
     public class FlightController : Controller
     {
         private readonly FlightContext _context;
