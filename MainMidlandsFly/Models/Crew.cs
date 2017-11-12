@@ -11,7 +11,6 @@ namespace MainMidlandsFly.Models
         public int ID { get; set; }
 
         [Display(Name = "Crew ID (Has to be a 5 Digit Number)")]
-        [StringLength(4, MinimumLength = 5)]
         [Required]
         public string CrewID { get; set; }
 
