@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace MainMidlandsFly.Models
 {
+    [Authorize]
     public class Aircraft
     {
         public int ID { get; set; }
 
-        [StringLength(6, MinimumLength = 5)]
+        [StringLength(6, MinimumLength = 4)]
         [Display(Name = "Aircraft ID (3 Digits,3 Letters)")]
         [Required]
         public string AircraftID { get; set; }
