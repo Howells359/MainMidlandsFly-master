@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MainMidlandsFly",
+    "\\MainMidlandsFly\\bin",
+    "\\MainMidlandsFly\\Controllers",
+    "\\MainMidlandsFly\\Data",
+    "\\MainMidlandsFly\\Extensions",
+    "\\MainMidlandsFly\\Migrations",
+    "\\MainMidlandsFly\\Models",
+    "\\MainMidlandsFly\\wwwroot"
   ],
-  "SelectedNode": "\\MainMidlandsFly.sln",
   "PreviewInSolutionExplorer": false
 }

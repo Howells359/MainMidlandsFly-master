@@ -1,29 +1,3 @@
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.deps.json
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.json
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.dev.json
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.dll
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.pdb
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.csprojResolveAssemblyReference.cache
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.csproj.CoreCompileInputs.cache
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.AssemblyInfoInputs.cache
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.AssemblyInfo.cs
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.dll
-C:\Users\asha\source\repos\MainMidlandsFly\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.pdb
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.deps.json
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.json
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.dev.json
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.dll
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.pdb
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.csprojResolveAssemblyReference.cache
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.csproj.CoreCompileInputs.cache
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.AssemblyInfoInputs.cache
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.AssemblyInfo.cs
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.dll
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.pdb
-<<<<<<< HEAD
-C:\Users\asha\Desktop\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-=======
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.deps.json
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.json
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\bin\Debug\netcoreapp2.0\MainMidlandsFly.runtimeconfig.dev.json
@@ -36,4 +10,3 @@ C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\obj\Debu
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.AssemblyInfo.cs
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.dll
 C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\obj\Debug\netcoreapp2.0\MainMidlandsFly.pdb
->>>>>>> 669047f787bba881fdb7f8aba3d59a84942afeff

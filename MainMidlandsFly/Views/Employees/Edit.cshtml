@@ -1,21 +1,22 @@
-﻿@model MainMidlandsFly.Models.Crew
+﻿@model MainMidlandsFly.Models.Employees
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-<h4>Crew</h4>
+<h4>Employees</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
             <div class="form-group">
-                <label asp-for="CrewID" class="control-label"></label>
-                <input asp-for="CrewID" class="form-control" />
-                <span asp-validation-for="CrewID" class="text-danger"></span>
+                <label asp-for="EmployeesID" class="control-label"></label>
+                <input asp-for="EmployeesID" class="form-control" />
+                <span asp-validation-for="EmployeesID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -28,12 +29,12 @@
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>

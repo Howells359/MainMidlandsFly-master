@@ -11,51 +11,51 @@ using Microsoft.AspNetCore.Authorization;
 namespace MainMidlandsFly.Controllers
 {
     [Authorize]
-    public class CrewController : Controller
+    public class EmployeesController : Controller
     {
-        private readonly CrewContext _context;
+        private readonly EmployeesContext _context;
 
-        public CrewController(CrewContext context)
+        public EmployeesController(EmployeesContext context)
         {
             _context = context;
         }
 
-// GET: Crew/Details/5
+// GET: Employees/Details/5
         public async Task<IActionResult> Index(string IDSEARCH)
         {
-            var Crew = from a in _context.Crew
+            var Employees = from a in _context.Employees
                          select a;
             if (!String.IsNullOrEmpty(IDSEARCH))
             {
-                Crew = Crew.Where(a => a.CrewID.Contains(IDSEARCH));
+                Employees = Employees.Where(a => a.EmployeesID.Contains(IDSEARCH));
             }
 
-            return View(await Crew.ToListAsync());
+            return View(await Employees.ToListAsync());
         }
 
-        // GET: Crew/Create
+        // GET: Employees/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Crew/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CrewID,Name,DateOfBirth,Type")] Crew crew)
+        public async Task<IActionResult> Create([Bind("ID,EmployeesID,Name,DateOfBirth,Role")] Employees Employees)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(crew);
+                _context.Add(Employees);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(crew);
+            return View(Employees);
         }
 
-        // GET: Crew/Edit/5
+        // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -63,22 +63,22 @@ namespace MainMidlandsFly.Controllers
                 return NotFound();
             }
 
-            var crew = await _context.Crew.SingleOrDefaultAsync(m => m.ID == id);
-            if (crew == null)
+            var Employees = await _context.Employees.SingleOrDefaultAsync(m => m.ID == id);
+            if (Employees == null)
             {
                 return NotFound();
             }
-            return View(crew);
+            return View(Employees);
         }
 
-        // POST: Crew/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CrewID,Name,DateOfBirth,Type")] Crew crew)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,EmployeesID,Name,DateOfBirth,Role")] Employees Employees)
         {
-            if (id != crew.ID)
+            if (id != Employees.ID)
             {
                 return NotFound();
             }
@@ -87,12 +87,12 @@ namespace MainMidlandsFly.Controllers
             {
                 try
                 {
-                    _context.Update(crew);
+                    _context.Update(Employees);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CrewExists(crew.ID))
+                    if (!EmployeesExists(Employees.ID))
                     {
                         return NotFound();
                     }
@@ -103,10 +103,10 @@ namespace MainMidlandsFly.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(crew);
+            return View(Employees);
         }
 
-        // GET: Crew/Delete/5
+        // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -114,30 +114,30 @@ namespace MainMidlandsFly.Controllers
                 return NotFound();
             }
 
-            var crew = await _context.Crew
+            var Employees = await _context.Employees
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (crew == null)
+            if (Employees == null)
             {
                 return NotFound();
             }
 
-            return View(crew);
+            return View(Employees);
         }
 
-        // POST: Crew/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var crew = await _context.Crew.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Crew.Remove(crew);
+            var Employees = await _context.Employees.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Employees.Remove(Employees);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CrewExists(int id)
+        private bool EmployeesExists(int id)
         {
-            return _context.Crew.Any(e => e.ID == id);
+            return _context.Employees.Any(e => e.ID == id);
         }
     }
 }

@@ -8,34 +8,39 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.Crew
+namespace MainMidlandsFly.Migrations.Employees
 {
-    [DbContext(typeof(CrewContext))]
-    partial class CrewContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(EmployeesContext))]
+    [Migration("20171114153424_addemployeeroles")]
+    partial class addemployeeroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
+            modelBuilder.Entity("MainMidlandsFly.Models.Employees", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CrewID");
-
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("EmployeesID")
+                        .IsRequired();
 
-                    b.Property<string>("Type");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<string>("Role")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
-                    b.ToTable("Crew");
+                    b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618
         }

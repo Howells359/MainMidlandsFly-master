@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace MainMidlandsFly.Models
 {
     [Authorize]
-    public class Crew
+    public class Employees
     {
         public int ID { get; set; }
 
-        [Display(Name = "Crew ID (Has to be a 5 Digit Number)")]
+        [Display(Name = "Employees ID (Has to be a 5 Digit Number)")]
         [Required]
-        public string CrewID { get; set; }
+        public string EmployeesID { get; set; }
 
         [StringLength(60, MinimumLength = 2)]
         [Required]
@@ -25,7 +25,8 @@ namespace MainMidlandsFly.Models
         [Required]
         public DateTime DateOfBirth { get; set; }
 
+        [Display(Name = "Role")]
         [Required]
-        public string Type { get; set; }
+        public string Role { get; set; }
     }
 }

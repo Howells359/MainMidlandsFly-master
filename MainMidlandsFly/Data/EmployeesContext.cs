@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MainMidlandsFly.Models
 {
-    public class CrewContext : DbContext
+    public class EmployeesContext : DbContext
     {
-        public CrewContext (DbContextOptions<CrewContext> options)
+        public EmployeesContext (DbContextOptions<EmployeesContext> options)
             : base(options)
         {
         }
 
-        public DbSet<MainMidlandsFly.Models.Crew> Crew { get; set; }
+        public DbSet<MainMidlandsFly.Models.Employees> Employees { get; set; }
     }
 }

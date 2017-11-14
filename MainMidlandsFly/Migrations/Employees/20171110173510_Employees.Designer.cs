@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.Crew
+namespace MainMidlandsFly.Migrations.Employees
 {
-    [DbContext(typeof(CrewContext))]
-    [Migration("20171110173510_Crew")]
-    partial class Crew
+    [DbContext(typeof(EmployeesContext))]
+    [Migration("20171110173510_Employees")]
+    partial class Employees
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,22 +21,22 @@ namespace MainMidlandsFly.Migrations.Crew
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
+            modelBuilder.Entity("MainMidlandsFly.Models.Employees", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CrewID");
+                    b.Property<string>("EmployeesID");
 
                     b.Property<DateTime>("DateOfBirth");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Type");
+                    b.Property<string>("Role");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Crew");
+                    b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618
         }
