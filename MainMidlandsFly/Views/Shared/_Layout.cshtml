@@ -5,39 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Midlands Fly</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css">
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Midland.png" alt="Logo" width="30" height="30" style="float:left" ;></a>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                <img src="~/images/Midland.png" alt="Logo" width="30" height="30" style="float:left" ;></a>
+            <a class="navbar-brand" href="#">Midland Fly</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Aircraft">Aircrafts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Crew">Crew</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Flights">Flights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="Maintenance">Maintenance</a>
+                    </li>   
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Aircraft" asp-action="Index">Aircraft</a></li>
-                    <li><a asp-area="" asp-controller="Employees" asp-action="Index">Employees</a></li>
-                    <li><a asp-area="" asp-controller="Flight" asp-action="Index">Flight</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
     <div class="container body-content">
@@ -71,4 +63,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
