@@ -13116,7 +13116,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asha\\.nuget\\packages\\": {},
+    "C:\\Users\\kmcco\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13125,17 +13125,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\asha\\Downloads\\MainMidlandsFly-master\\MainMidlandsFly\\MainMidlandsFly.csproj",
+      "projectUniqueName": "C:\\Visual Studio Projects\\source\\MainMidlandsFly-master\\MainMidlandsFly\\MainMidlandsFly.csproj",
       "projectName": "MainMidlandsFly",
-      "projectPath": "C:\\Users\\asha\\Downloads\\MainMidlandsFly-master\\MainMidlandsFly\\MainMidlandsFly.csproj",
-      "packagesPath": "C:\\Users\\asha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asha\\Downloads\\MainMidlandsFly-master\\MainMidlandsFly\\obj\\",
+      "projectPath": "C:\\Visual Studio Projects\\source\\MainMidlandsFly-master\\MainMidlandsFly\\MainMidlandsFly.csproj",
+      "packagesPath": "C:\\Users\\kmcco\\.nuget\\packages\\",
+      "outputPath": "C:\\Visual Studio Projects\\source\\MainMidlandsFly-master\\MainMidlandsFly\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\asha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kmcco\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
