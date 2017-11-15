@@ -106,6 +106,28 @@ namespace MainMidlandsFly.Controllers
             return View(Employees);
         }
 
+
+        // GET: Employee/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Employees = await _context.Employees
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (Employees == null)
+            {
+                return NotFound();
+            }
+
+            return View(Employees);
+        }
+
+
+
+
         // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -12,7 +12,7 @@ namespace MainMidlandsFly.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Employees ID (Has to be a 5 Digit Number)")]
+        [Display(Name = "Employee ID")]
         [Required]
         public string EmployeesID { get; set; }
 
