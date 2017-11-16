@@ -14,7 +14,7 @@ namespace MainMidlandsFly.Models
 
         [Display(Name = "Employee ID")]
         [Required]
-        public string EmployeesID { get; set; }
+        public string EmployeeID { get; set; }
 
         [StringLength(60, MinimumLength = 2)]
         [Required]
