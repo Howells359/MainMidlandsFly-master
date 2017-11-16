@@ -16,11 +16,11 @@ namespace MainMidlandsFly.Models
         [Display(Name = "Aircraft RegNO (3 Digits,3 Letters)")]
         public string AircraftRegNo { get; set; }
 
-        [Required]
-        public string MaxCarry { get; set; }
+        //[Required]
+        //public string MaxCarry { get; set; }
 
-        [Required]
-        public string MaxSeat { get; set; }
+        //[Required]
+        //public string MaxSeat { get; set; }
 
       
         [Required]

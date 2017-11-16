@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.NewAircraft
+namespace MainMidlandsFly.Migrations.NewCrew
 {
-    [DbContext(typeof(NewAircraftContext))]
-    partial class NewAircraftContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(NewCrewContext))]
+    partial class NewCrewContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -20,26 +20,32 @@ namespace MainMidlandsFly.Migrations.NewAircraft
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainMidlandsFly.Models.Aircraft", b =>
+            modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CrewId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AircraftRegNo")
-                        .HasMaxLength(6);
+                    b.Property<string>("Address")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("FlyingHoursCount")
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<string>("Status")
+                    b.Property<string>("MobNo")
                         .IsRequired();
 
-                    b.Property<string>("Type")
+                    b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("ID");
+                    b.Property<string>("Status");
 
-                    b.ToTable("Aircraft");
+                    b.Property<string>("Type");
+
+                    b.HasKey("CrewId");
+
+                    b.ToTable("Crew");
                 });
 #pragma warning restore 612, 618
         }

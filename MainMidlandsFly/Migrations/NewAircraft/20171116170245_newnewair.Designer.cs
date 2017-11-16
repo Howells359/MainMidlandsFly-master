@@ -11,9 +11,10 @@ using System;
 namespace MainMidlandsFly.Migrations.NewAircraft
 {
     [DbContext(typeof(NewAircraftContext))]
-    partial class NewAircraftContextModelSnapshot : ModelSnapshot
+    [Migration("20171116170245_newnewair")]
+    partial class newnewair
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
