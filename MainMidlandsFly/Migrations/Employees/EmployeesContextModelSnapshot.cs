@@ -27,7 +27,7 @@ namespace MainMidlandsFly.Migrations.Employees
 
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<string>("EmployeesID")
+                    b.Property<string>("EmployeeID")
                         .IsRequired();
 
                     b.Property<string>("Name")

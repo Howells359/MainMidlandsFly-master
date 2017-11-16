@@ -27,7 +27,7 @@ namespace MainMidlandsFly.Controllers
                          select a;
             if (!String.IsNullOrEmpty(IDSEARCH))
             {
-                Employees = Employees.Where(a => a.EmployeesID.Contains(IDSEARCH));
+                Employees = Employees.Where(a => a.EmployeeID.Contains(IDSEARCH));
             }
 
             return View(await Employees.ToListAsync());
@@ -44,7 +44,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,EmployeesID,Name,DateOfBirth,Role")] Employees Employees)
+        public async Task<IActionResult> Create([Bind("ID,EmployeeID,Name,DateOfBirth,Role")] Employees Employees)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,EmployeesID,Name,DateOfBirth,Role")] Employees Employees)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,EmployeeID,Name,DateOfBirth,Role")] Employees Employees)
         {
             if (id != Employees.ID)
             {

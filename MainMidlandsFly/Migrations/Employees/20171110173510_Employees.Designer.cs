@@ -26,7 +26,7 @@ namespace MainMidlandsFly.Migrations.Employees
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("EmployeesID");
+                    b.Property<string>("EmployeeID");
 
                     b.Property<DateTime>("DateOfBirth");
 

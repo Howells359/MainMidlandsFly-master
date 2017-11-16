@@ -26,7 +26,7 @@ namespace MainMidlandsFly.Migrations.Employees
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "EmployeesID",
+                name: "EmployeeID",
                 table: "Employees",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -52,7 +52,7 @@ namespace MainMidlandsFly.Migrations.Employees
                 oldMaxLength: 60);
 
             migrationBuilder.AlterColumn<string>(
-                name: "EmployeesID",
+                name: "EmployeeID",
                 table: "Employees",
                 nullable: true,
                 oldClrType: typeof(string),
