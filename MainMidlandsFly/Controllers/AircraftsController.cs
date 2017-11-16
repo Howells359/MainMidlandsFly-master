@@ -6,35 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MainMidlandsFly.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
-    [Authorize]
-    public class FlightController : Controller
+    public class AircraftsController : Controller
     {
-        private readonly FlightContext _context;
+        private readonly NewAircraftContext _context;
 
-        public FlightController(FlightContext context)
+        public AircraftsController(NewAircraftContext context)
         {
             _context = context;
         }
 
-        // GET: Flight
-        public async Task<IActionResult> Index(string IDSEARCH)
+        // GET: Aircrafts
+        public async Task<IActionResult> Index()
         {
-            var flight = from a in _context.Flight
-                       select a;
-            if (!String.IsNullOrEmpty(IDSEARCH))
-            {
-                flight = flight.Where(a => a.FlightNo.Contains(IDSEARCH));
-            }
-
-            return View(await flight.ToListAsync());
+            return View(await _context.Aircraft.ToListAsync());
         }
 
-
-        // GET: Flight/Details/5
+        // GET: Aircrafts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,39 +32,39 @@ namespace MainMidlandsFly.Controllers
                 return NotFound();
             }
 
-            var flight = await _context.Flight
-                .SingleOrDefaultAsync(m => m.FlightId == id);
-            if (flight == null)
+            var aircraft = await _context.Aircraft
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (aircraft == null)
             {
                 return NotFound();
             }
 
-            return View(flight);
+            return View(aircraft);
         }
 
-        // GET: Flight/Create
+        // GET: Aircrafts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Flight/Create
+        // POST: Aircrafts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FlightID,Origin,Destination,Date,DepartureTime,ArrivalTime,DistanceTravelled")] Flight flight)
+        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,MaxCarry,MaxSeat,Type,Status,FlyingHoursCount")] Aircraft aircraft)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(flight);
+                _context.Add(aircraft);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(flight);
+            return View(aircraft);
         }
 
-        // GET: Flight/Edit/5
+        // GET: Aircrafts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,22 +72,22 @@ namespace MainMidlandsFly.Controllers
                 return NotFound();
             }
 
-            var flight = await _context.Flight.SingleOrDefaultAsync(m => m.FlightId == id);
-            if (flight == null)
+            var aircraft = await _context.Aircraft.SingleOrDefaultAsync(m => m.ID == id);
+            if (aircraft == null)
             {
                 return NotFound();
             }
-            return View(flight);
+            return View(aircraft);
         }
 
-        // POST: Flight/Edit/5
+        // POST: Aircrafts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FlightID,Origin,Destination,Date,DepartureTime,ArrivalTime,DistanceTravelled")] Flight flight)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,AircraftRegNo,MaxCarry,MaxSeat,Type,Status,FlyingHoursCount")] Aircraft aircraft)
         {
-            if (id != flight.FlightId)
+            if (id != aircraft.ID)
             {
                 return NotFound();
             }
@@ -106,12 +96,12 @@ namespace MainMidlandsFly.Controllers
             {
                 try
                 {
-                    _context.Update(flight);
+                    _context.Update(aircraft);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FlightExists(flight.FlightId))
+                    if (!AircraftExists(aircraft.ID))
                     {
                         return NotFound();
                     }
@@ -122,10 +112,10 @@ namespace MainMidlandsFly.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(flight);
+            return View(aircraft);
         }
 
-        // GET: Flight/Delete/5
+        // GET: Aircrafts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,30 +123,30 @@ namespace MainMidlandsFly.Controllers
                 return NotFound();
             }
 
-            var flight = await _context.Flight
-                .SingleOrDefaultAsync(m => m.FlightId == id);
-            if (flight == null)
+            var aircraft = await _context.Aircraft
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (aircraft == null)
             {
                 return NotFound();
             }
 
-            return View(flight);
+            return View(aircraft);
         }
 
-        // POST: Flight/Delete/5
+        // POST: Aircrafts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var flight = await _context.Flight.SingleOrDefaultAsync(m => m.FlightId == id);
-            _context.Flight.Remove(flight);
+            var aircraft = await _context.Aircraft.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Aircraft.Remove(aircraft);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FlightExists(int id)
+        private bool AircraftExists(int id)
         {
-            return _context.Flight.Any(e => e.FlightId == id);
+            return _context.Aircraft.Any(e => e.ID == id);
         }
     }
 }

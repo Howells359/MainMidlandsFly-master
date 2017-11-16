@@ -4,36 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Aircraft</h2>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-controller="Aircraft" asp-action="Index">
-    <p>
-        Title: <input type="text" name="IDSEARCH">
-        <input type="submit" value="Search For Results" />
-    </p>
-</form>
-
-
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AircraftID)
+                    @Html.DisplayNameFor(model => model.AircraftRegNo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Colour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
+                    @Html.DisplayNameFor(model => model.MaxCarry)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.MaxSeat)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MaxCarry)
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlyingHoursCount)
                 </th>
             <th></th>
         </tr>
@@ -42,19 +37,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AircraftID)
+                @Html.DisplayFor(modelItem => item.AircraftRegNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Colour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
+                @Html.DisplayFor(modelItem => item.MaxCarry)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaxSeat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaxCarry)
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlyingHoursCount)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

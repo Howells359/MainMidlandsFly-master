@@ -13,24 +13,26 @@ namespace MainMidlandsFly.Models
         public int ID { get; set; }
 
         [StringLength(6, MinimumLength = 4)]
-        [Display(Name = "Aircraft ID (3 Digits,3 Letters)")]
-        [Required]
-        public string AircraftID { get; set; }
+        [Display(Name = "Aircraft RegNO (3 Digits,3 Letters)")]
+        public string AircraftRegNo { get; set; }
 
         [Required]
-        public string Colour { get; set; }
+        public string MaxCarry { get; set; }
 
-        [StringLength(20, MinimumLength = 2)]
-        [Required]
-        public string Type { get; set; }
-
-        [StringLength(20, MinimumLength = 2)]
         [Required]
         public string MaxSeat { get; set; }
 
-        [StringLength(20, MinimumLength = 2)]
+      
         [Required]
-        public string MaxCarry { get; set; }
+        public string Type { get; set; }
+
+        
+        [Required]
+        public string Status { get; set; }
+
+        
+        [Required]
+        public string FlyingHoursCount { get; set; }
 
     }
 }

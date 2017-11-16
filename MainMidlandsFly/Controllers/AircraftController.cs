@@ -28,7 +28,7 @@ namespace MainMidlandsFly.Controllers
                            select a;
             if (!String.IsNullOrEmpty(IDSEARCH))
             {
-                aircraft = aircraft.Where(a => a.AircraftID.Contains(IDSEARCH));
+                aircraft = aircraft.Where(a => a.AircraftRegNo.Contains(IDSEARCH));
             }
 
             return View(await aircraft.ToListAsync());
@@ -64,7 +64,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,AircraftID,Colour,Type,MaxSeat,MaxCarry")] Aircraft aircraft)
+        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,Type,MaxSeat,MaxCarry")] Aircraft aircraft)
         {
             if (ModelState.IsValid)
             {

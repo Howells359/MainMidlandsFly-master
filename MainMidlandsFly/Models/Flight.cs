@@ -10,18 +10,18 @@ namespace MainMidlandsFly.Models
     [Authorize]
     public class Flight
     {
-        public int ID { get; set; }
+        public int FlightId { get; set; }
 
         [StringLength(6, MinimumLength = 5)]
         [Display(Name = "Flight ID (3 Digits,3 Letters)")]
         [Required]
-        public string FlightID { get; set; }
+        public string FlightNo { get; set; }
 
-        [StringLength(60, MinimumLength = 2)]
+        [StringLength(60)]
         [Required]
         public string Origin { get; set; }
 
-        [StringLength(60, MinimumLength = 2)]
+        [StringLength(60)]
         [Required]
         public string Destination { get; set; }
 
@@ -41,6 +41,6 @@ namespace MainMidlandsFly.Models
         public DateTime ArrivalTime { get; set; }
 
         [Display(Name = "Distance Travelled")]
-        public int DistanceTravelled { get; set; }
+        public string DistanceTravelled { get; set; }
     }
 }
