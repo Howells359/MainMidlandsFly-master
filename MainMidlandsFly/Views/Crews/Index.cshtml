@@ -13,7 +13,7 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.CrewId)
+                    @Html.DisplayNameFor(model => model.EmployeeID)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
@@ -24,18 +24,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Address)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DateOfBirth)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Type)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Status)
-                </th>
+                </th>*@
             <th></th>
         </tr>
     </thead>
@@ -43,7 +43,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CrewId)
+                @Html.DisplayFor(modelItem => item.EmployeeID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -54,18 +54,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Status)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CrewId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CrewId">Details</a> |
