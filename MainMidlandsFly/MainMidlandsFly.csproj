@@ -5,6 +5,21 @@
     <UserSecretsId>aspnet-MainMidlandsFly-625DDC0E-0E4D-46CF-B015-901218ACEA21</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\Employees\**" />
+    <Content Remove="Migrations\Employees\**" />
+    <EmbeddedResource Remove="Migrations\Employees\**" />
+    <None Remove="Migrations\Employees\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AircraftController.cs" />
+    <Compile Remove="Controllers\EmployeesController.cs" />
+    <Compile Remove="Controllers\FlightController.cs" />
+    <Compile Remove="Data\EmployeesContext.cs" />
+    <Compile Remove="Models\Employees.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />

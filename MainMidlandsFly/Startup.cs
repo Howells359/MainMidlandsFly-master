@@ -28,7 +28,7 @@ namespace MainMidlandsFly
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -40,22 +40,22 @@ namespace MainMidlandsFly
             services.AddMvc();
 
             services.AddDbContext<AircraftContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("AircraftContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
-            services.AddDbContext<EmployeesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("EmployeesContext")));
+           // services.AddDbContext<EmployeesContext>(options =>
+           //         options.UseSqlServer(Configuration.GetConnectionString("EmployeesContext")));
 
             services.AddDbContext<FlightContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("FlightContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
             services.AddDbContext<NewAircraftContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NewAircraftContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
             services.AddDbContext<NewFlightsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NewFlightsContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
             services.AddDbContext<NewCrewContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NewCrewContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

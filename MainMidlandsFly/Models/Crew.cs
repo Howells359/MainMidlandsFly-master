@@ -9,17 +9,19 @@ namespace MainMidlandsFly.Models
 {
     public class Crew
     {
+        [Display(Name = "Employee ID")]
+        [Required]
         public int CrewId { get; set; }
 
-        [Display(Name = "Employee ID")]
+        [Display(Name = "Name")]
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Employee Mobile Num")]
+        [Display(Name = "Mobile No")]
         [Required]
         public string MobNo { get; set; }
 
-        [Display(Name = "Employee Email Id")]
+        [Display(Name = "E-Mail")]
         [Required]
         public string Email { get; set; }
 
@@ -30,7 +32,7 @@ namespace MainMidlandsFly.Models
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Role")]
         public string Type { get; set; }
 
         [Display(Name = "Status")]
