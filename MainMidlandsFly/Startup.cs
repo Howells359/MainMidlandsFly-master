@@ -51,7 +51,7 @@ namespace MainMidlandsFly
             services.AddDbContext<NewFlightsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
 
-            services.AddDbContext<NewCrewContext>(options =>
+            services.AddDbContext<CrewContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
         }
 

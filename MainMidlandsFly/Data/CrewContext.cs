@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MainMidlandsFly.Models
 {
-    public class NewCrewContext : DbContext
+    public class CrewContext : DbContext
     {
-        public NewCrewContext (DbContextOptions<NewCrewContext> options)
+        public CrewContext (DbContextOptions<CrewContext> options)
             : base(options)
         {
         }

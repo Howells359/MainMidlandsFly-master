@@ -15,7 +15,7 @@ namespace MainMidlandsFly.Models
 
         //[Display(Name = "Employee ID")]
         //[Required]
-        //public string EmployeeID { get; set; }
+        //public string EmployeeID { get; private set; }
 
         [Display(Name = "Name")]
         [Required]
@@ -23,7 +23,7 @@ namespace MainMidlandsFly.Models
 
         [Display(Name = "Mobile No")]
         [DataType(DataType.PhoneNumber)]
-        [Required]//(ErrorMessage="UK Mobile Number Required!")]
+        [Required(ErrorMessage="UK Mobile Number Required!")]
         [RegularExpression(@"^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$", ErrorMessage = "UK mobile number format required - 07xxx xxxxxx or  (07xxx) xxxxxx or +44 7xxx xxx xxx")]
         public string MobNo { get; set; }
 

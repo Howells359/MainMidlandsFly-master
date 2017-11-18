@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MainMidlandsFly.Migrations.NewCrew
+namespace MainMidlandsFly.Migrations.Crew
 {
     public partial class crew2 : Migration
     {

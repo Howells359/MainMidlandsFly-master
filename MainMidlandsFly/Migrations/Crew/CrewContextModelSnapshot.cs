@@ -8,13 +8,12 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.NewCrew
+namespace MainMidlandsFly.Migrations.Crew
 {
-    [DbContext(typeof(NewCrewContext))]
-    [Migration("20171116171706_newcrew")]
-    partial class newcrew
+    [DbContext(typeof(CrewContext))]
+    partial class CrewContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

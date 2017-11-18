@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.NewCrew
+namespace MainMidlandsFly.Migrations.Crew
 {
-    [DbContext(typeof(NewCrewContext))]
-    [Migration("20171116174857_crew2")]
-    partial class crew2
+    [DbContext(typeof(CrewContext))]
+    [Migration("20171116171706_newcrew")]
+    partial class crew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn(C:\Visual Studio Projects\source\MainMidlandsFly-master\MainMidlandsFly\Migrations\Crew\20171116171706_newcrew.Designer.cs);
 
             modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
                 {

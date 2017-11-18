@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace MainMidlandsFly.Migrations.NewCrew
+namespace MainMidlandsFly.Migrations.Crew
 {
-    public partial class newcrew : Migration
+    public partial class crew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -17,6 +17,8 @@
     <Compile Remove="Controllers\EmployeesController.cs" />
     <Compile Remove="Controllers\FlightController.cs" />
     <Compile Remove="Data\EmployeesContext.cs" />
+    <Compile Remove="Migrations\Crew\20171116171706_newcrew.cs" />
+    <Compile Remove="Migrations\Crew\20171116171706_newcrew.Designer.cs" />
     <Compile Remove="Models\Employees.cs" />
   </ItemGroup>
 
