@@ -55,11 +55,14 @@ namespace MainMidlandsFly.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CrewId,Name,MobNo,Email,Address,DateOfBirth,Type,Status")] Crew crew)
         {
-            string EmployeeID = (crew.CrewId).ToString().PadLeft(5, '0');
+#
             if (ModelState.IsValid)
             {
                 _context.Add(crew);
                 await _context.SaveChangesAsync();
+                //To create unique 5 digit employee ID utilise CrewID primary key when new employee created and left pad value with zeros 
+                //string EmployeeID = (crew.CrewId).ToString().PadLeft(5, '0');
+                _context.Update(crew.)
                 return RedirectToAction(nameof(Index));
             }
             return View(crew);
