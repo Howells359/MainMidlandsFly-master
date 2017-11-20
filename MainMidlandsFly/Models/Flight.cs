@@ -12,10 +12,25 @@ namespace MainMidlandsFly.Models
     {
         public int FlightId { get; set; }
 
-        [StringLength(6, MinimumLength = 5)]
-        [Display(Name = "Flight ID (3 Digits,3 Letters)")]
+        [Display(Name = "Leaving Date")]
+        [DataType(DataType.Date)]
         [Required]
-        public string FlightNo { get; set; }
+        public DateTime LeavingDate { get; set; }
+
+        [Display(Name = "Departure Time")]
+        [DataType(DataType.Time)]
+        [Required]
+        public DateTime DepartureTime { get; set; }
+
+        [Display(Name = "Arriving Date")]
+        [DataType(DataType.Date)]
+        [Required]
+        public DateTime ArrivalDate { get; set; }
+
+        [Display(Name = "Arrival Time")]
+        [DataType(DataType.Time)]
+        [Required]
+        public DateTime ArrivalTime { get; set; }
 
         [StringLength(60)]
         [Required]
@@ -25,22 +40,5 @@ namespace MainMidlandsFly.Models
         [Required]
         public string Destination { get; set; }
 
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
-        [Required]
-        public DateTime Date { get; set; }
-
-        [Display(Name = "Departure Time")]
-        [DataType(DataType.Time)]
-        [Required]
-        public DateTime DepartureTime { get; set; }
-
-        [Display(Name = "Arrival Time")]
-        [DataType(DataType.Time)]
-        [Required]
-        public DateTime ArrivalTime { get; set; }
-
-        [Display(Name = "Distance Travelled")]
-        public string DistanceTravelled { get; set; }
     }
 }

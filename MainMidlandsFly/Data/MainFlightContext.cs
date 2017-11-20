@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MainMidlandsFly.Models
 {
-    public class FlightContext : DbContext
+    public class MainFlightContext : DbContext
     {
-        public FlightContext (DbContextOptions<FlightContext> options)
+        public MainFlightContext (DbContextOptions<MainFlightContext> options)
             : base(options)
         {
         }

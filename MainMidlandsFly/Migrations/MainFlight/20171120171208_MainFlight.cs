@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace MainMidlandsFly.Migrations.Flight
+namespace MainMidlandsFly.Migrations.MainFlight
 {
-    public partial class Flight : Migration
+    public partial class MainFlight : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,19 +13,18 @@ namespace MainMidlandsFly.Migrations.Flight
                 name: "Flight",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    FlightId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Destination = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DistanceTravelled = table.Column<int>(type: "int", nullable: false),
-                    FlightID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Origin = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Destination = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    LeavingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Origin = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Flight", x => x.ID);
+                    table.PrimaryKey("PK_Flight", x => x.FlightId);
                 });
         }
 

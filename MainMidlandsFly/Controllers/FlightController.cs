@@ -6,33 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MainMidlandsFly.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
-    [Authorize]
     public class FlightController : Controller
     {
-        private readonly FlightContext _context;
+        private readonly MainFlightContext _context;
 
-        public FlightController(FlightContext context)
+        public FlightController(MainFlightContext context)
         {
             _context = context;
         }
 
         // GET: Flight
-        public async Task<IActionResult> Index(string IDSEARCH)
+        public async Task<IActionResult> Index()
         {
-            var flight = from a in _context.Flight
-                       select a;
-            if (!String.IsNullOrEmpty(IDSEARCH))
-            {
-                flight = flight.Where(a => a.FlightNo.Contains(IDSEARCH));
-            }
-
-            return View(await flight.ToListAsync());
+            return View(await _context.Flight.ToListAsync());
         }
-
 
         // GET: Flight/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -63,7 +53,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FlightID,Origin,Destination,Date,DepartureTime,ArrivalTime,DistanceTravelled")] Flight flight)
+        public async Task<IActionResult> Create([Bind("FlightId,LeavingDate,DepartureTime,ArrivalDate,ArrivalTime,Origin,Destination")] Flight flight)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +85,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FlightID,Origin,Destination,Date,DepartureTime,ArrivalTime,DistanceTravelled")] Flight flight)
+        public async Task<IActionResult> Edit(int id, [Bind("FlightId,LeavingDate,DepartureTime,ArrivalDate,ArrivalTime,Origin,Destination")] Flight flight)
         {
             if (id != flight.FlightId)
             {

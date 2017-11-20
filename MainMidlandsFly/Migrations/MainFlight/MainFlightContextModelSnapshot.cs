@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.Flight
+namespace MainMidlandsFly.Migrations.MainFlight
 {
-    [DbContext(typeof(FlightContext))]
-    partial class FlightContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MainFlightContext))]
+    partial class MainFlightContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -22,24 +22,26 @@ namespace MainMidlandsFly.Migrations.Flight
 
             modelBuilder.Entity("MainMidlandsFly.Models.Flight", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("FlightId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("ArrivalDate");
 
                     b.Property<DateTime>("ArrivalTime");
 
-                    b.Property<DateTime>("Date");
-
                     b.Property<DateTime>("DepartureTime");
 
-                    b.Property<string>("Destination");
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
-                    b.Property<int>("DistanceTravelled");
+                    b.Property<DateTime>("LeavingDate");
 
-                    b.Property<string>("FlightID");
+                    b.Property<string>("Origin")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
-                    b.Property<string>("Origin");
-
-                    b.HasKey("ID");
+                    b.HasKey("FlightId");
 
                     b.ToTable("Flight");
                 });

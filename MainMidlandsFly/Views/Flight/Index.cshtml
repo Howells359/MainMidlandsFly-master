@@ -13,25 +13,22 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FlightNo)
+                    @Html.DisplayNameFor(model => model.LeavingDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartureTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArrivalDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArrivalTime)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Origin)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Destination)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DepartureTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ArrivalTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DistanceTravelled)
                 </th>
             <th></th>
         </tr>
@@ -40,25 +37,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FlightNo)
+                @Html.DisplayFor(modelItem => item.LeavingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Origin)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Destination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartureTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrivalTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DistanceTravelled)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.FlightId">Edit</a> |
