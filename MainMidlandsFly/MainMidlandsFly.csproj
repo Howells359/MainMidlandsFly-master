@@ -19,4 +19,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Controllers\Flight_Aircraft_Crew_ScheduleController.cs">
+      <Generator></Generator>
+    </Compile>
+  </ItemGroup>
+
 </Project>

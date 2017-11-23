@@ -50,6 +50,20 @@ namespace MainMidlandsFly.Controllers
             return View();
         }
 
+        public IActionResult PlaneChoice()
+        {
+            return View();
+        }
+
+        public IActionResult CreateForCargo()
+        {
+            return View();
+        }
+        public IActionResult CreateForPassenger()
+        {
+            return View();
+        }
+
         // POST: Flight/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -61,9 +75,9 @@ namespace MainMidlandsFly.Controllers
             {
                 _context.Add(flight);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Flight_Aircraft_Crew_ScheduleController.Create));
             }
-            return View(flight);
+            return View();
         }
 
         // GET: Flight/Edit/5

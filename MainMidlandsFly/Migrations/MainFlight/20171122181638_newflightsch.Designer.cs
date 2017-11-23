@@ -11,9 +11,10 @@ using System;
 namespace MainMidlandsFly.Migrations.MainFlight
 {
     [DbContext(typeof(MainFlightContext))]
-    partial class MainFlightContextModelSnapshot : ModelSnapshot
+    [Migration("20171122181638_newflightsch")]
+    partial class newflightsch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
