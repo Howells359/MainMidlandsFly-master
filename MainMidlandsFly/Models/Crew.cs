@@ -11,7 +11,7 @@ namespace MainMidlandsFly.Models
     {
         public int CrewId { get; set; }
 
-        [Display(Name = "Employee ID")]
+        [Display(Name = "Employee Name")]
         [Required]
         public string Name { get; set; }
 
@@ -30,7 +30,7 @@ namespace MainMidlandsFly.Models
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Role")]
         public string Type { get; set; }
 
         [Display(Name = "Status")]

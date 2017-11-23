@@ -28,7 +28,7 @@ namespace MainMidlandsFly
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDBContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -40,13 +40,13 @@ namespace MainMidlandsFly
             services.AddMvc();
 
             services.AddDbContext<NewAircraftContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NewAircraftContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDBContext")));
 
             services.AddDbContext<NewCrewContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NewCrewContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDBContext")));
 
             services.AddDbContext<MainFlightContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MainFlightContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDBContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
