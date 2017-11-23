@@ -51,7 +51,7 @@ namespace MainMidlandsFly.Controllers
         public IActionResult Create()
         {
             ////create Address object to store form values, may not need to create the object here??
-            var addressIndex = new Crew();
+            var addressIndex = new CrewViewModel();
             ////Message string to be used by Index View
             string msg = "Please input house number/name and post code.";
             ViewBag.msg = msg;
@@ -62,7 +62,7 @@ namespace MainMidlandsFly.Controllers
 
 
 
-        //POST Create
+        //POST: Crew/Create/Validate
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(string postcode, string HouseNo, string Name, string Type, string Email, string MobNo, DateTime DateOfBirth)
@@ -71,7 +71,7 @@ namespace MainMidlandsFly.Controllers
                 using (HttpClient client = new HttpClient())
                 {
                     //Create new object to store form values in Address model
-                    var FullAddress = new Crew();
+                    var FullAddress = new CrewViewModel();
 
                     //Store any populated form values in FullAddress Address model object
                     if (Name != null) { FullAddress.Name = Name; }
@@ -99,13 +99,13 @@ namespace MainMidlandsFly.Controllers
                         var AddressResponse = response.Content.ReadAsStringAsync().Result;
 
                         //Use Newtonsoft JSON plugin to deserialize response
-                        var address1 = JsonConvert.DeserializeObject<Crew>(AddressResponse);
+                        var JSONaddress = JsonConvert.DeserializeObject<CrewViewModel>(AddressResponse);
 
                         //string AddressLatitude = address.latitude;
 
                         //GetCrew() API always returns address values as an array with each address line being comma spearated values.
                         //As we're only looking for singular addresses we always use the first and only value in the return array and assign it to a string.
-                        string fullAddress = address1.addresses[0];
+                        string fullAddress = JSONaddress.addresses[0];
 
                         //Separate address string into an array using comma separator to identify values, removes any white space.
                         string[] values = fullAddress.Split(',').Select(sValue => sValue.Trim()).ToArray();
@@ -123,14 +123,14 @@ namespace MainMidlandsFly.Controllers
                         string[] myStrings = new string[] { AddressLine1, AddressLine2, AddressLine3, AddressLine4, Locality, TownOrCity, County, postcode, null };
 
                         //Build full address string from populated (not null) values adding line break between each line 
-                        address1.formattedAddress = string.Join(System.Environment.NewLine, myStrings.Where(str => !string.IsNullOrEmpty(str)));
+                        JSONaddress.formattedAddress = string.Join(System.Environment.NewLine, myStrings.Where(str => !string.IsNullOrEmpty(str)));
 
 
-                        if (address1.formattedAddress != null)
+                        if (JSONaddress.formattedAddress != null)
                         {
                         //store address value in formattedAddress model object
                         //FullAddress.formattedAddress = address1.formattedAddress;
-                        FullAddress.Address = address1.formattedAddress;
+                        FullAddress.Address = JSONaddress.formattedAddress;
                         return View(FullAddress);
                         }
                     }
@@ -153,6 +153,8 @@ namespace MainMidlandsFly.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(crew);
+                var employee = new Crew();
+                //employee.Name = FullAddress;
                 await _context.SaveChangesAsync();
                 //To create unique 5 digit employee ID utilise CrewID primary key when new employee created and left pad value with zeros 
                 //string EmployeeID = (crew.CrewId).ToString().PadLeft(5, '0');
