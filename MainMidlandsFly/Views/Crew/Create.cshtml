@@ -4,55 +4,91 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create New Crew Member</h2>
 
-<h4>Crew</h4>
+@*<h4>Crew</h4>*@
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MobNo" class="control-label"></label>
-                <input asp-for="MobNo" class="form-control" />
-                <span asp-validation-for="MobNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
+
+<div>
+    <form asp-controller="Crew" asp-action="Create" method="post">
+        <div>
+            <h4>Name and Role</h4>
+            <br />
+
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <br />
+
+            <label asp-for="Type" class="control-label"></label>
+            :   <select asp-for="Type" asp-items="Model.Roles">
+                <option disabled selected>--- SELECT ---</option>
+            </select> <br />
+            <span asp-validation-for="Type" class="text-danger"></span>
+            <br />
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
+        </div>
+
+        <div>
+            <h4>Address Lookup</h4>
+            
+                <label asp-for="HouseNo" class="control-label"></label>
+                <input asp-for="HouseNo" class="form-control" />
+                <span asp-validation-for="HouseNo" class="text-danger"></span>
+                <br />
+                <label asp-for="postcode" class="control-label"></label>
+                <input asp-for="postcode" class="form-control" />
+                <span asp-validation-for="postcode" class="text-danger"></span>
+                <br />              
+        </div>
+
+        <div class="multiline">            
+            @*Line below required to display formattedAddress string correctly as it contains line break characters*@
+
+            @if (@Model.Address != null)
+            {
+                @Model.Address;
+            }
+            else
+            {
+                @ViewBag.msg
+            }
+            <br />
+            <br />
+        </div>
+
+        <div>
+            <h4>Contact Details</h4>
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <label asp-for="MobNo" class="control-label"></label>
+                <input asp-for="MobNo" class="form-control" />
+                <span asp-validation-for="MobNo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="form-group">
+            <br />
+            <input type="submit" value="Validate" class="btn btn-default" />
+        </div>      
+    </form>
 </div>
+<div>
+    <form asp-controller="Crew" asp-action="CreateUpdateDB" method="post">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </form>
+</div>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
