@@ -1,4 +1,31 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MainMidlandsFly.Models.CrewViewModel
+
+<div>
+    <form asp-controller="Crew" asp-action="AddressLookup" method="post">
+        <h4>Address Lookup</h4>
+
+        <label asp-for="HouseNo" class="control-label"></label>
+        <input asp-for="HouseNo" class="form-control" />
+        <span asp-validation-for="HouseNo" class="text-danger"></span>
+        <br />
+        <label asp-for="postcode" class="control-label"></label>
+        <input asp-for="postcode" class="form-control" />
+        <span asp-validation-for="postcode" class="text-danger"></span>
+        <br />
+        <input type="submit" value="Find" class="btn btn-default" />
+    </form>
+</div>
+
+@*<div class="multiline">
+
+    @if (@Model.Address != null)
+            {
+        @Model.Address;
+            }
+            else
+            {
+        @ViewBag.msg
+    }
+    <br />*@
+    <br />
+</div>
