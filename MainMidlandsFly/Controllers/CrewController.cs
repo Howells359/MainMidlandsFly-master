@@ -68,8 +68,8 @@ namespace MainMidlandsFly.Controllers
         //public IActionResult Create(string postcode, string HouseNo, string Name, string Type, string Email, string MobNo, DateTime DateOfBirth)
         public IActionResult Create(CrewViewModel FullAddress, string click) //instantiate CrewViewModel object to store form values
         {
-            if (click.Equals("Find"))
-            {
+            //if (click.Equals("Find"))
+            //{
                 //Use plugin Net.Http to connect to API, create new object
                 using (HttpClient client = new HttpClient())
 
@@ -84,7 +84,7 @@ namespace MainMidlandsFly.Controllers
 
 
                     //Connection details for GetAddress.io API that returns full addresses when House No/Name & Postcode provided
-                    string apiKey = "xmZfShMoG0aWHJRPc-FkSQ11213";
+                    string apiKey = "3zQi9kpO6E6icIxK75pDxQ11165";
                     string website = "https://api.getaddress.io/find/" + postcode + "/" + HouseNo + "?api-key=" + apiKey;
 
                     client.BaseAddress = new Uri(website);
@@ -121,104 +121,89 @@ namespace MainMidlandsFly.Controllers
                         string[] myStrings = new string[] { AddressLine1, AddressLine2, AddressLine3, AddressLine4, Locality, TownOrCity, County, postcode, null };
 
                         //Build full address string from populated (not empty/null) values adding line break between each line 
-                        JSONaddress.formattedAddress = string.Join(System.Environment.NewLine, myStrings.Where(str => !string.IsNullOrEmpty(str)));
+                        //JSONaddress.formattedAddress = string.Join(System.Environment.NewLine, myStrings.Where(str => !string.IsNullOrEmpty(str)));
+                        JSONaddress.formattedAddress = string.Join(", ", myStrings.Where(str => !string.IsNullOrEmpty(str)));
 
 
                         if (JSONaddress.formattedAddress != null)
                         {
                             //store formattedAddress string in Address field in model object                       
                             FullAddress.Address = JSONaddress.formattedAddress;
-                            //return View(FullAddress);
-                            return View("Create", FullAddress);
+
+
+                            //Store values to TempData for usage in the CreateRecord action method
+                            TempData["Name"] = FullAddress.Name;
+                            TempData["DateOfBirth"] = FullAddress.DateOfBirth;
+                            TempData["Type"] = FullAddress.Type;
+                            TempData["Address"] = FullAddress.Address;
+                            TempData["MobNo"] = FullAddress.MobNo;
+                            TempData["Email"] = FullAddress.Email;
+
+                            //                        
+                            return View("CreateRecord", FullAddress);
                         }
                     }
+                    
                     //If address not found send following message to View
                     string msg = "Address not found, please try again.";
-                    ViewBag.msg = msg;
-                    //return View(FullAddress);
+                    ViewBag.NoAddress = "No Address";
+                    ViewBag.msg = msg;                    
                     return View("Create", FullAddress);
+                    
                 }
             }
-            else
-            {
-                
-                {
-                    //Code below writes form values to SQL DB
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                    if (ModelState.IsValid)
-                    {
-                        Crew crewDB = new Crew();
-                        crewDB.Name = FullAddress.Name;
-                        crewDB.DateOfBirth = FullAddress.DateOfBirth;
-                        crewDB.Type = FullAddress.Type;
-                        crewDB.Address = FullAddress.Address;
-                        crewDB.MobNo = FullAddress.MobNo;
-                        crewDB.Email = FullAddress.Email;
-                        
-                        //Save changes to DB
-                        _context.Add(crewDB);                        
-                        _context.SaveChanges();
-                        
-                        //To create unique 5 digit employee ID utilise CrewID primary key when new employee created and left pad value with zeros 
-                        //string EmployeeID = (crew.CrewId).ToString().PadLeft(5, '0'); CHANGED! Going to use starting ID of 10000.
+        
 
-                        _context.Update(crewDB);
-                        return RedirectToAction(nameof(Create));
-                    }                    
-                }
-                return RedirectToAction("Create", FullAddress);
-            }
+
+
+        // GET: Crew/CreateRecord
+        [HttpGet]
+        public IActionResult CreateRecord(CrewViewModel FullAddress)
+        {
+            return View(FullAddress);
         }
 
 
-        // POST: Crew/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+         // POST: Crew/CreateRecord
+         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> CreateUpdateDB([Bind("CrewId,Name,MobNo,Email,Address,DateOfBirth,Type,Status")] Crew crew)
-        ////public IActionResult CreateUpdateDB(CrewViewModel FullAddress)
-        //{
-        //    //Code below writes form values to SQL DB
-        //    var errors = ModelState.Values.SelectMany(v => v.Errors);
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(crew);
-        //        var employee = new Crew();
-        //        //employee.Name = FullAddress;
-        //        await _context.SaveChangesAsync();
-        //        //To create unique 5 digit employee ID utilise CrewID primary key when new employee created and left pad value with zeros 
-        //        //string EmployeeID = (crew.CrewId).ToString().PadLeft(5, '0');
-        //        _context.Update(crew);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    //return View(crew);
-        //    return RedirectToAction("Create", crew);
-        //}
+        public IActionResult CreateRecordConfirmed(Crew FullAddress)
+        {
+            //Convert TempData values back into respective types
+            FullAddress.Name = Convert.ToString(TempData["Name"]);
+            FullAddress.DateOfBirth = Convert.ToDateTime(TempData["DateOfBirth"]);
+            FullAddress.Type = Convert.ToString(TempData["Type"]);
+            FullAddress.Address = Convert.ToString(TempData["Address"]);
+            FullAddress.MobNo = Convert.ToString(TempData["MobNo"]);
+            FullAddress.Email = Convert.ToString(TempData["Email"]);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //Code below writes form values to SQL DB if ModelState valid 
+            //**Removed ModelState validation as passing input view to a review view before submission so data has to be transferred back 
+            //**to controller via Viewdata object, not input form therefore ModelState is false by default.
+            
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);     
+            //if (ModelState.IsValid)
+            {
+                //Save changes to DB
+                _context.Add(FullAddress);
+                _context.SaveChanges();
+                _context.Update(FullAddress);
+                return RedirectToAction(nameof(Index));
+            }
+            //return RedirectToAction("Create", FullAddress);
+        }
+            
 
 
 
         // GET: Crew/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -231,6 +216,7 @@ namespace MainMidlandsFly.Controllers
             {
                 return NotFound();
             }
+            
             return View(crew);
         }
         
@@ -240,13 +226,13 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CrewId,Name,MobNo,Email,Address,DateOfBirth,Type,Status")] Crew crew)
-        {
+        public async Task<IActionResult> Edit(int id, [Bind("CrewId,Name,MobNo,Email,Address,DateOfBirth,Type,Status")]Crew crew)
+        {            
             if (id != crew.CrewId)
             {
                 return NotFound();
             }
-
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 try
@@ -303,5 +289,14 @@ namespace MainMidlandsFly.Controllers
         {
             return _context.Crew.Any(e => e.CrewId == id);
         }
+
+        //Testing using partial views for address lookup form
+        //
+        //[HttpPost]
+        //public ActionResult Contact(string message)
+        //{
+        //    ViewBag.Message = "Thanks for the Message, we will get back to you";
+        //    return PartialView("_CreateAddressLookup");
+        //}
     }
 }

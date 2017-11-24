@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.Crew
+namespace MainMidlandsFly.Migrations
 {
-    [DbContext(typeof(CrewContext))]
-    partial class CrewContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AircraftContext))]
+    partial class AircraftContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -20,34 +20,24 @@ namespace MainMidlandsFly.Migrations.Crew
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
+            modelBuilder.Entity("MainMidlandsFly.Models.Aircraft", b =>
                 {
-                    b.Property<int>("CrewId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(300);
+                    b.Property<string>("AircraftRegNo")
+                        .HasMaxLength(6);
 
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("MobNo")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<int>("FlyingHoursCount");
 
                     b.Property<string>("Status");
 
                     b.Property<string>("Type")
                         .IsRequired();
 
-                    b.HasKey("CrewId");
+                    b.HasKey("ID");
 
-                    b.ToTable("Crew");
+                    b.ToTable("Aircraft");
                 });
 #pragma warning restore 612, 618
         }

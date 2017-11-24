@@ -47,7 +47,8 @@ namespace MainMidlandsFly.Controllers
         // GET: Aircrafts/Create
         public IActionResult Create()
         {
-            return View();
+            Aircraft aircraft = new Aircraft();
+            return View(aircraft);
         }
 
         // POST: Aircrafts/Create
@@ -55,7 +56,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,MaxCarry,MaxSeat,Type,Status,FlyingHoursCount")] Aircraft aircraft)
+        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,Type,FlyingHoursCount")] Aircraft aircraft)
         {
             if (ModelState.IsValid)
             {

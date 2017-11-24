@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\Employees\**" />
-    <Content Remove="Migrations\Employees\**" />
-    <EmbeddedResource Remove="Migrations\Employees\**" />
-    <None Remove="Migrations\Employees\**" />
+    <Compile Remove="Migrations\Archive\**" />
+    <Content Remove="Migrations\Archive\**" />
+    <EmbeddedResource Remove="Migrations\Archive\**" />
+    <None Remove="Migrations\Archive\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +17,34 @@
     <Compile Remove="Controllers\EmployeesController.cs" />
     <Compile Remove="Controllers\FlightController.cs" />
     <Compile Remove="Data\EmployeesContext.cs" />
+    <Compile Remove="Migrations\Aircraft\20171110172753_Aircraft.cs" />
+    <Compile Remove="Migrations\Aircraft\20171110172753_Aircraft.Designer.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116162356_NEWAIR.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116162356_NEWAIR.Designer.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116170245_newnewair.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116170245_newnewair.Designer.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116175610_air.cs" />
+    <Compile Remove="Migrations\Aircraft\20171116175610_air.Designer.cs" />
+    <Compile Remove="Migrations\Aircraft\20171124214308_aircraft_migrations.cs" />
+    <Compile Remove="Migrations\Aircraft\20171124214308_aircraft_migrations.Designer.cs" />
+    <Compile Remove="Migrations\Aircraft\NewAircraftContextModelSnapshot.cs" />
     <Compile Remove="Migrations\Crew\20171116171706_newcrew.cs" />
     <Compile Remove="Migrations\Crew\20171116171706_newcrew.Designer.cs" />
+    <Compile Remove="Migrations\Crew\20171116174857_crew2.cs" />
+    <Compile Remove="Migrations\Crew\20171116174857_crew2.Designer.cs" />
+    <Compile Remove="Migrations\Crew\20171124213419_crew_migrations.cs" />
+    <Compile Remove="Migrations\Crew\20171124213419_crew_migrations.Designer.cs" />
+    <Compile Remove="Migrations\Crew\CrewContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\MainFlight\20171120171208_MainFlight.cs" />
+    <Compile Remove="Migrations\MainFlight\20171120171208_MainFlight.Designer.cs" />
+    <Compile Remove="Migrations\MainFlight\20171122181638_newflightsch.cs" />
+    <Compile Remove="Migrations\MainFlight\20171122181638_newflightsch.Designer.cs" />
+    <Compile Remove="Migrations\MainFlight\MainFlightContextModelSnapshot.cs" />
     <Compile Remove="Models\Employees.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\Archive\AircraftContextModelSnapshot.cs" />
   </ItemGroup>
 
 
@@ -27,6 +52,7 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.3" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.3" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
@@ -45,6 +71,11 @@
     <Compile Update="Controllers\Flight_Aircraft_Crew_ScheduleController.cs">
       <Generator></Generator>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\Crew\" />
+    <Folder Include="Migrations\MainFlight\" />
   </ItemGroup>
 
 </Project>

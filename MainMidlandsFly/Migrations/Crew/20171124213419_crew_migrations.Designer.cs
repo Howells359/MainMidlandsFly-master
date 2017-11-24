@@ -11,9 +11,10 @@ using System;
 namespace MainMidlandsFly.Migrations.Crew
 {
     [DbContext(typeof(CrewContext))]
-    partial class CrewContextModelSnapshot : ModelSnapshot
+    [Migration("20171124213419_crew_migrations")]
+    partial class crew_migrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -11,13 +11,14 @@ using System;
 namespace MainMidlandsFly.Migrations
 {
     [DbContext(typeof(AircraftContext))]
-    partial class AircraftContextModelSnapshot : ModelSnapshot
+    [Migration("20171124215927_aircraft_migrations")]
+    partial class aircraft_migrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MainMidlandsFly.Models.Aircraft", b =>
@@ -25,24 +26,15 @@ namespace MainMidlandsFly.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AircraftID")
-                        .IsRequired()
+                    b.Property<string>("AircraftRegNo")
                         .HasMaxLength(6);
 
-                    b.Property<string>("Colour")
-                        .IsRequired();
+                    b.Property<int>("FlyingHoursCount");
 
-                    b.Property<string>("MaxCarry")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("MaxSeat")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                    b.Property<string>("Status");
 
                     b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                        .IsRequired();
 
                     b.HasKey("ID");
 

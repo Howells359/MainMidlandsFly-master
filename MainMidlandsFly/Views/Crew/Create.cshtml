@@ -5,68 +5,70 @@
 }
 
 <h2>Create New Crew Member</h2>
-
-@*<h4>Crew</h4>*@
 <hr />
 
-<div>
-    
-        <form asp-controller="Crew" asp-action="Create" method="post">
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+        @*<form asp-controller="Crew" asp-action="Create" method="post">*@
             <div>
-                <h4>Name and Role</h4>
-                
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-                <br />
+                <h4>Personal Details</h4>
 
-                <label asp-for="Type" class="control-label"></label>
-                :   <select asp-for="Type" asp-items="Model.Roles">
-                    <option disabled selected>--- SELECT ---</option>
-                </select> <br />
-                <span asp-validation-for="Type" class="text-danger"></span>
-                <br />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>                    
+                </div>
 
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="control-label"></label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
             </div>
 
             <div>
                 <h4>Address Lookup</h4>
 
-                <label asp-for="HouseNo" class="control-label"></label>
-                <input asp-for="HouseNo" class="form-control" />
-                <span asp-validation-for="HouseNo" class="text-danger"></span>
-                <br />
+                <div class="form-group">
+                    <label asp-for="HouseNo" class="control-label"></label>
+                    <input asp-for="HouseNo" class="form-control" />
+                    <span asp-validation-for="HouseNo" class="text-danger"></span>
+                </div>
 
-                <label asp-for="postcode" class="control-label"></label>
-                <input asp-for="postcode" class="form-control" />
-                <span asp-validation-for="postcode" class="text-danger"></span>
-                <br /> 
-                
-                <input type="submit" name="click" value="Find" class="btn btn-default" />
-                
+                <div class="form-group">
+                    <label asp-for="postcode" class="control-label"></label>
+                    <input asp-for="postcode" class="form-control" />
+                    <span asp-validation-for="postcode" class="text-danger"></span>                    
+                </div>
+
+                <div class="form-group">
+                    @*@Html.Partial("_CreateAddressLookup", Model)*@
+
+                    @if (@Model.Address != null)
+                    {
+                        @*<div class="multiline">*@
+                        @Model.Address;
+                        @*</div>*@
+                    }
+                    else
+                    {
+                        if (ViewBag.NoAddress != null)
+                        {
+                            <div class="text-danger">
+                                @ViewBag.msg
+                            </div>
+                        }
+                        else
+                        {
+                            @ViewBag.msg
+                        }
+                    }
+                    <br />                 
+                </div>
             </div>
 
-            @*@Html.Partial("_CreateAddressLookup", Model)*@
-
-
-            <div class="multiline">
-
-                @if (@Model.Address != null)
-                {
-                    @Model.Address;
-                }
-                else
-                {
-                    @ViewBag.msg
-                }
-                <br />
-                <br />
-            </div>
-            
-           <div>
+            <div>
                 <h4>Contact Details</h4>
 
                 <div class="form-group">
@@ -81,11 +83,24 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
-            <input type="submit" name="click" value="Create" class="btn btn-default" />
-    </form>
+
+            <div>
+                <h4>Job Details</h4>
+                <div class="form-group">
+                    <label asp-for="Type" class="control-label"></label>
+                    :   <select asp-for="Type" asp-items="Model.Roles">
+                        <option disabled selected>--- SELECT ---</option>
+                    </select> <br />
+                    <span asp-validation-for="Type" class="text-danger"></span>                    
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="click" value="Validate" class="btn btn-default" />
+            </div>
+        </form>
+
+    </div>
 </div>
-
-
 
 <div>
     <a asp-action="Index">Back to List</a>

@@ -1,19 +1,33 @@
 ﻿@model MainMidlandsFly.Models.CrewViewModel
 
-<div>
-    <form asp-controller="Crew" asp-action="AddressLookup" method="post">
-        <h4>Address Lookup</h4>
+@*<div id="myContactForm">
+   
+        <label>Contact Us</label>
+        <textarea name="contact" class="input-group"></textarea>
+        <button class="btn btn-primary" id="contact-btn">Submit</button>
+    }
+</div>*@
 
-        <label asp-for="HouseNo" class="control-label"></label>
-        <input asp-for="HouseNo" class="form-control" />
-        <span asp-validation-for="HouseNo" class="text-danger"></span>
-        <br />
-        <label asp-for="postcode" class="control-label"></label>
-        <input asp-for="postcode" class="form-control" />
-        <span asp-validation-for="postcode" class="text-danger"></span>
-        <br />
-        <input type="submit" value="Find" class="btn btn-default" />
-    </form>
+
+
+
+<div id="myAddressForm">
+   @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "myContactForm" }))
+   {
+        <form asp-controller="Crew" asp-action="AddressLookup" method="post">
+            <h4>Address Lookup</h4>
+
+            <label asp-for="HouseNo" class="control-label"></label>
+            <input asp-for="HouseNo" class="form-control" />
+            <span asp-validation-for="HouseNo" class="text-danger"></span>
+            <br />
+            <label asp-for="postcode" class="control-label"></label>
+            <input asp-for="postcode" class="form-control" />
+            <span asp-validation-for="postcode" class="text-danger"></span>
+            <br />
+            <input type="submit" value="Find" class="btn btn-default" />
+        </form>
+   }
 </div>
 
 @*<div class="multiline">
@@ -27,5 +41,6 @@
         @ViewBag.msg
     }
     <br />*@
-    <br />
-</div>
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

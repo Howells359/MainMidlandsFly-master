@@ -1,0 +1,65 @@
+﻿@model MainMidlandsFly.Models.CrewViewModel
+
+@{
+    ViewData["Title"] = "Verify";
+}
+
+<h2>Verify Details</h2>
+<hr />
+
+<div>
+    <form asp-action="CreateRecordConfirmed">
+     @*<form asp-controller="Crew" asp-action="CreateRecordConfirmed" method="post">*@
+            <div>
+                <h4>Personal Details</h4>
+
+                <div class="form-group">
+                    <b><label asp-for="Name" class="control-label"></label></b>
+                    @Model.Name<br />
+                </div>
+
+                <div class="form-group">
+                    <b><label asp-for="DateOfBirth" class="control-label"></label></b>
+                    @Model.DateOfBirth<br />
+                </div>
+
+                <div class="form-group">
+                    <b><label asp-for="Address" class="control-label"></label></b>
+                    @Model.Address<br />
+                </div>
+            </div>
+            <div>
+                <h4>Contact Details</h4>
+
+                <div class="form-group">
+                    <b><label asp-for="MobNo" class="control-label"></label></b>
+                    @Model.MobNo<br />
+                </div>
+
+                <div class="form-group">
+                    <b><label asp-for="Email" class="control-label"></label></b>
+                    @Model.Email<br />
+                </div>
+            </div>
+            <div>
+                <h4>Job Role</h4>
+
+                <div class="form-group">
+                    <b><label asp-for="Type" class="control-label"></label></b>
+                    @Model.Type<br />
+                    <br>
+                </div>
+            </div>
+            <input type="submit" name="click" value="Create" class="btn btn-default" />
+        </form>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

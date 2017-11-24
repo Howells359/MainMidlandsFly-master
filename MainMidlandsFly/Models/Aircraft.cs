@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+
 
 namespace MainMidlandsFly.Models
 {
@@ -13,7 +17,7 @@ namespace MainMidlandsFly.Models
         public int ID { get; set; }
 
         [StringLength(6, MinimumLength = 4)]
-        [Display(Name = "Aircraft RegNO (3 Digits,3 Letters)")]
+        [Display(Name = "Aircraft RegNo (3 Digits,3 Letters)")]
         public string AircraftRegNo { get; set; }
 
         //[Required]
@@ -22,17 +26,27 @@ namespace MainMidlandsFly.Models
         //[Required]
         //public string MaxSeat { get; set; }
 
-      
+
         [Required]
+        [Display(Name = "AirCraft Category")]
         public string Type { get; set; }
 
-        
-        [Required]
+
+        //[Required]
+        [Display(Name = "Status")]
         public string Status { get; set; }
 
-        
-        [Required]
-        public string FlyingHoursCount { get; set; }
 
+        //[Required]
+        [Display(Name = "Flying Hours")]
+        public int FlyingHoursCount { get; set; }
+
+        [NotMapped]
+        [Display(Name = "AirCraft Categorys")]
+        public List<SelectListItem> AircraftCategory { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Passenger", Text = "Passenger" },
+            new SelectListItem { Value = "Cargo", Text = "Cargo" },
+        };
     }
 }

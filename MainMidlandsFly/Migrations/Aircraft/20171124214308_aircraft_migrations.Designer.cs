@@ -8,46 +8,37 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.Crew
+namespace MainMidlandsFly.Migrations
 {
-    [DbContext(typeof(CrewContext))]
-    partial class CrewContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AircraftContext))]
+    [Migration("20171124214308_aircraft_migrations")]
+    partial class aircraft_migrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
+            modelBuilder.Entity("MainMidlandsFly.Models.Aircraft", b =>
                 {
-                    b.Property<int>("CrewId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(300);
+                    b.Property<string>("AircraftRegNo")
+                        .HasMaxLength(6);
 
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("MobNo")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("FlyingHoursCount");
 
                     b.Property<string>("Status");
 
                     b.Property<string>("Type")
                         .IsRequired();
 
-                    b.HasKey("CrewId");
+                    b.HasKey("ID");
 
-                    b.ToTable("Crew");
+                    b.ToTable("Aircraft");
                 });
 #pragma warning restore 612, 618
         }

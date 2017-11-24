@@ -12,7 +12,7 @@ namespace MainMidlandsFly.Models
     public class CrewViewModel
     {
         [Display(Name = "Employee ID")]
-        [Required]
+        //[Required]
         public int CrewId { get; set; }
 
         [Display(Name = "Full Name")]
@@ -31,7 +31,6 @@ namespace MainMidlandsFly.Models
         public string Email { get; set; }
 
         [Display(Name = "Home Address")]
-        [StringLength(150)]
         public string Address { get; set; }
 
         [Display(Name = "Date Of Birth")]
@@ -39,6 +38,7 @@ namespace MainMidlandsFly.Models
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Role")]
+        [Required]
         public string Type { get; set; }
 
         [Display(Name = "Status")]
