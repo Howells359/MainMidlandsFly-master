@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  float:left;
+  width:60%;
+  padding:0 20px;
+}
+.right {
+  background-color:#e5e5e5;
+  float:left;
+  width:20%;
+  padding:15px;
+  margin-top:7px;
+  text-align:center;
+}
+
+    </style>
+</head>
+<body color:#aaaaaa;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+        <h1>Pick the Type of plane that will be needed</h1>           
+<p>
+     <a asp-controller="Flight" asp-action="CreateForPassenger">Passenger Plane</a>
+     <a asp-controller="Flight" asp-action="CreateForCargo">Cargo Plane</a>
+</p>
+
+</div>
+
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© Ashley Howells, Sana Elahi, Karl McCormack, Faryal Tabassam</div>
+
+</body>
+</html>

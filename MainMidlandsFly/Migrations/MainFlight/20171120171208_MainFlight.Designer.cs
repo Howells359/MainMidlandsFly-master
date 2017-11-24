@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.NewFlights
+namespace MainMidlandsFly.Migrations.MainFlight
 {
-    [DbContext(typeof(NewFlightsContext))]
-    [Migration("20171116174250_newf")]
-    partial class newf
+    [DbContext(typeof(MainFlightContext))]
+    [Migration("20171120171208_MainFlight")]
+    partial class MainFlight
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,9 @@ namespace MainMidlandsFly.Migrations.NewFlights
                     b.Property<int>("FlightId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("ArrivalTime");
+                    b.Property<DateTime>("ArrivalDate");
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("ArrivalTime");
 
                     b.Property<DateTime>("DepartureTime");
 
@@ -36,11 +36,7 @@ namespace MainMidlandsFly.Migrations.NewFlights
                         .IsRequired()
                         .HasMaxLength(60);
 
-                    b.Property<string>("DistanceTravelled");
-
-                    b.Property<string>("FlightNo")
-                        .IsRequired()
-                        .HasMaxLength(6);
+                    b.Property<DateTime>("LeavingDate");
 
                     b.Property<string>("Origin")
                         .IsRequired()

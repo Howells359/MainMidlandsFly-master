@@ -1,0 +1,54 @@
+﻿@model MainMidlandsFly.Models.Flight
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Flight</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LeavingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LeavingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepartureTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Origin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Origin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FlightId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

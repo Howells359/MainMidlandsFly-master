@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace MainMidlandsFly.Migrations.NewFlights
+namespace MainMidlandsFly.Migrations.MainFlight
 {
-    [DbContext(typeof(NewFlightsContext))]
-    [Migration("20171116171428_newflight")]
-    partial class newflight
+    [DbContext(typeof(MainFlightContext))]
+    [Migration("20171122181638_newflightsch")]
+    partial class newflightsch
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,9 @@ namespace MainMidlandsFly.Migrations.NewFlights
                     b.Property<int>("FlightId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("ArrivalTime");
+                    b.Property<DateTime>("ArrivalDate");
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTime>("ArrivalTime");
 
                     b.Property<DateTime>("DepartureTime");
 
@@ -36,11 +36,7 @@ namespace MainMidlandsFly.Migrations.NewFlights
                         .IsRequired()
                         .HasMaxLength(60);
 
-                    b.Property<string>("DistanceTravelled");
-
-                    b.Property<string>("FlightNo")
-                        .IsRequired()
-                        .HasMaxLength(6);
+                    b.Property<DateTime>("LeavingDate");
 
                     b.Property<string>("Origin")
                         .IsRequired()
@@ -49,6 +45,34 @@ namespace MainMidlandsFly.Migrations.NewFlights
                     b.HasKey("FlightId");
 
                     b.ToTable("Flight");
+                });
+
+            modelBuilder.Entity("MainMidlandsFly.Models.Flight_Aircraft_Crew_Schedule", b =>
+                {
+                    b.Property<int>("ScheduleId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AircraftId");
+
+                    b.Property<int>("CabinCrewId");
+
+                    b.Property<int>("CabinCrewId2");
+
+                    b.Property<int>("CabinCrewId3");
+
+                    b.Property<int>("FlightCrewId1");
+
+                    b.Property<int>("FlightCrewId2");
+
+                    b.Property<int>("FlightCrewId3");
+
+                    b.Property<int>("FlightId");
+
+                    b.Property<int>("Flying_Hours");
+
+                    b.HasKey("ScheduleId");
+
+                    b.ToTable("Flight_Aircraft_Crew_Schedule");
                 });
 #pragma warning restore 612, 618
         }
