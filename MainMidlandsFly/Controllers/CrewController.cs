@@ -81,6 +81,8 @@ namespace MainMidlandsFly.Controllers
                     string HouseNo = FullAddress.HouseNo; //required for address lookup below
                     string Email = FullAddress.Email;
                     string MobNo = FullAddress.MobNo;
+                    int CrewId = FullAddress.CrewId;
+                    string Type = FullAddress.Type;                    
 
 
                     //Connection details for GetAddress.io API that returns full addresses when House No/Name & Postcode provided
@@ -133,14 +135,15 @@ namespace MainMidlandsFly.Controllers
 
                             //Store values to TempData for usage in the CreateRecord action method
                             TempData["Name"] = FullAddress.Name;
-                            TempData["DateOfBirth"] = FullAddress.DateOfBirth;
-                            TempData["Type"] = FullAddress.Type;
+                            TempData["DateOfBirth"] = FullAddress.DateOfBirth;                            
                             TempData["Address"] = FullAddress.Address;
                             TempData["MobNo"] = FullAddress.MobNo;
-                            TempData["Email"] = FullAddress.Email;
+                            TempData["Email"] = FullAddress.Email;                            
+                            TempData["CrewId"] = FullAddress.CrewId;
+                            TempData["Type"] = FullAddress.Type;
 
-                            //                        
-                            return View("CreateRecord", FullAddress);
+                        //                        
+                        return View("CreateRecord", FullAddress);
                         }
                     }
                     
@@ -176,23 +179,27 @@ namespace MainMidlandsFly.Controllers
         {
             //Convert TempData values back into respective types
             FullAddress.Name = Convert.ToString(TempData["Name"]);
-            FullAddress.DateOfBirth = Convert.ToDateTime(TempData["DateOfBirth"]);
-            FullAddress.Type = Convert.ToString(TempData["Type"]);
+            FullAddress.DateOfBirth = Convert.ToDateTime(TempData["DateOfBirth"]);       
             FullAddress.Address = Convert.ToString(TempData["Address"]);
             FullAddress.MobNo = Convert.ToString(TempData["MobNo"]);
             FullAddress.Email = Convert.ToString(TempData["Email"]);
-
+            //FullAddress.CrewId = Convert.ToInt32(TempData["CrewId"]);
+            FullAddress.Type = Convert.ToString(TempData["Type"]);
 
             //Code below writes form values to SQL DB if ModelState valid 
             //**Removed ModelState validation as passing input view to a review view before submission so data has to be transferred back 
             //**to controller via Viewdata object, not input form therefore ModelState is false by default.
-            
+
             //var errors = ModelState.Values.SelectMany(v => v.Errors);     
             //if (ModelState.IsValid)
             {
                 //Save changes to DB
                 _context.Add(FullAddress);
+                //Added SQL commands below to allow custom PK values i.e. CrewId (Employee ID) 
+                //Didn't work as EF Core 2, tried workaround https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties which doesn't work on PK values...losing the will to live!                 
+                //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Crew ON"); 
                 _context.SaveChanges();
+                //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Crew OFF");
                 _context.Update(FullAddress);
                 return RedirectToAction(nameof(Index));
             }

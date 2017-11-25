@@ -34,7 +34,6 @@
     <Compile Remove="Migrations\Crew\20171116174857_crew2.Designer.cs" />
     <Compile Remove="Migrations\Crew\20171124213419_crew_migrations.cs" />
     <Compile Remove="Migrations\Crew\20171124213419_crew_migrations.Designer.cs" />
-    <Compile Remove="Migrations\Crew\CrewContextModelSnapshot.cs" />
     <Compile Remove="Migrations\MainFlight\20171120171208_MainFlight.cs" />
     <Compile Remove="Migrations\MainFlight\20171120171208_MainFlight.Designer.cs" />
     <Compile Remove="Migrations\MainFlight\20171122181638_newflightsch.cs" />
@@ -74,7 +73,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\Crew\" />
     <Folder Include="Migrations\MainFlight\" />
   </ItemGroup>
 

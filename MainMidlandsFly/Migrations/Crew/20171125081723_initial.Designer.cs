@@ -11,9 +11,10 @@ using System;
 namespace MainMidlandsFly.Migrations.Crew
 {
     [DbContext(typeof(CrewContext))]
-    partial class CrewContextModelSnapshot : ModelSnapshot
+    [Migration("20171125081723_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +23,8 @@ namespace MainMidlandsFly.Migrations.Crew
 
             modelBuilder.Entity("MainMidlandsFly.Models.Crew", b =>
                 {
-                    b.Property<int>("CrewId");
+                    b.Property<int>("CrewId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
                         .IsRequired()

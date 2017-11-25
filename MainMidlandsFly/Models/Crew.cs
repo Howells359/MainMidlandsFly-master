@@ -11,7 +11,11 @@ namespace MainMidlandsFly.Models
 {
     public class Crew
     {
-        [Key]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[Range(10000, 99999, ErrorMessage = "Please enter valid Employee ID between 10000 & 99999")]
+        //[Required]
+        //Ended up running SQL command "DBCC checkident ('Crew', reseed, 10000)" in SQL manager to set start No
         [Display(Name = "Employee ID")]
         public int CrewId { get; set; }
 

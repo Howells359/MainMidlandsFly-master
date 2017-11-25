@@ -13,6 +13,7 @@ namespace MainMidlandsFly.Models
     {
         [Display(Name = "Employee ID")]
         //[Required]
+        //[Range(10000, 99999, ErrorMessage = "Please enter valid Employee ID between 10000 & 99999")]
         public int CrewId { get; set; }
 
         [Display(Name = "Full Name")]
