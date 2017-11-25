@@ -16,8 +16,11 @@ namespace MainMidlandsFly.Models
     {
         public int ID { get; set; }
 
+        [Required]
         [StringLength(6, MinimumLength = 4)]
         [Display(Name = "Aircraft RegNo (3 Digits,3 Letters)")]
+        [RegularExpression(@"^\d{3}[a-zA-Z]{3}$",
+            ErrorMessage = "Aircraft Registration must be 3 numbers and 3 letters, without spaces - e.g. 123ABC")]
         public string AircraftRegNo { get; set; }
 
         //[Required]

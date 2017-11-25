@@ -10,23 +10,23 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
-    [Authorize(Roles = "Admin, Crew")]
-    public class AircraftsController : Controller
+    //[Authorize(Roles = "Admin, Crew")]
+    public class AircraftController : Controller
     {
         private readonly NewAircraftContext _context;
 
-        public AircraftsController(NewAircraftContext context)
+        public AircraftController(NewAircraftContext context)
         {
             _context = context;
         }
 
-        // GET: Aircrafts
+        // GET: Aircraft
         public async Task<IActionResult> Index()
         {
             return View(await _context.Aircraft.ToListAsync());
         }
 
-        // GET: Aircrafts/Details/5
+        // GET: Aircraft/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,14 +44,14 @@ namespace MainMidlandsFly.Controllers
             return View(aircraft);
         }
 
-        // GET: Aircrafts/Create
+        // GET: Aircraft/Create
         public IActionResult Create()
         {
             Aircraft aircraft = new Aircraft();
             return View(aircraft);
         }
 
-        // POST: Aircrafts/Create
+        // POST: Aircraft/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -67,7 +67,7 @@ namespace MainMidlandsFly.Controllers
             return View(aircraft);
         }
 
-        // GET: Aircrafts/Edit/5
+        // GET: Aircraft/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,7 +83,7 @@ namespace MainMidlandsFly.Controllers
             return View(aircraft);
         }
 
-        // POST: Aircrafts/Edit/5
+        // POST: Aircraft/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -118,7 +118,7 @@ namespace MainMidlandsFly.Controllers
             return View(aircraft);
         }
 
-        // GET: Aircrafts/Delete/5
+        // GET: Aircraft/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,7 +136,7 @@ namespace MainMidlandsFly.Controllers
             return View(aircraft);
         }
 
-        // POST: Aircrafts/Delete/5
+        // POST: Aircraft/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -10,11 +10,13 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 
-namespace MainMidlandsFly.Controllers
+    namespace MainMidlandsFly.Controllers
 {
-    public class CrewController : Controller
+        //[Authorize(Roles = "Admin, Crew")]
+        public class CrewController : Controller
     {
         private readonly CrewContext _context;
 
