@@ -67,7 +67,8 @@ namespace MainMidlandsFly.Models
         [Display(Name = "Post Code (UK)")]
         [Required]
         //Need to modify expression below to add ability to input lowercase characters
-        [RegularExpression(@"\b([A-PR-UWYZ](?:(?:\d{1,2}|\d[A-HJ-KSTUW])|(?:[A-HK-Y]\d(?:\d|[A-Z])?)))\s?(\d[ABD-HJLNP-UW-Z]{2})\b",
+        [RegularExpression(@"\b([a-pr-uwyzA-PR-UWYZ](?:(?:\d{1,2}|\d[a-hj-kstuwA-HJ-KSTUW])|(?:[a-hk-yA-HK-Y]\d(?:\d|[a-zA-Z])?)))\s?(\d[abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2})\b",
+        //[RegularExpression(@"\b([A-PR-UWYZ](?:(?:\d{1,2}|\d[A-HJ-KSTUW])|(?:[A-HK-Y]\d(?:\d|[A-Z])?)))\s?(\d[ABD-HJLNP-UW-Z]{2})\b",
             ErrorMessage = "Please use UK postcode format- AA9A 9AA, A9A 9AA, A9 9AA, A99 9AA, AA9 9AA, AA99 9AA")]
         public string postcode { get; set; }
 

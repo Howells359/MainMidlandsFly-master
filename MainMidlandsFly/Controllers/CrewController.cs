@@ -196,7 +196,7 @@ namespace MainMidlandsFly.Controllers
                 //Save changes to DB
                 _context.Add(FullAddress);
                 //Added SQL commands below to allow custom PK values i.e. CrewId (Employee ID) 
-                //Didn't work as EF Core 2, tried workaround https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties which doesn't work on PK values...losing the will to live!                 
+                //Didn't work as using EF Core 2, tried workaround https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties which doesn't work on PK values...losing the will to live!                 
                 //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Crew ON"); 
                 _context.SaveChanges();
                 //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Crew OFF");
