@@ -56,7 +56,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,Type,FlyingHoursCount")] Aircraft aircraft)
+        public async Task<IActionResult> Create([Bind("ID,AircraftRegNo,Type,FlyingHoursCount,Maximum_Seating_Capacity,Maximum_Cargo_Capacity")] Aircraft aircraft)
         {
             if (ModelState.IsValid)
             {

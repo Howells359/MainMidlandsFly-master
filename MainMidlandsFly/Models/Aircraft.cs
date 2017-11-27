@@ -18,25 +18,20 @@ namespace MainMidlandsFly.Models
 
         [Required]
         [StringLength(6, MinimumLength = 4)]
-        [Display(Name = "Aircraft RegNo (3 Digits,3 Letters)")]
+        [Display(Name = "Aircraft Registration ID")]
         [RegularExpression(@"^\d{3}[a-zA-Z]{3}$",
             ErrorMessage = "Aircraft Registration must be 3 numbers and 3 letters, without spaces - e.g. 123ABC")]
         public string AircraftRegNo { get; set; }
 
-        //[Required]
-        //public string MaxCarry { get; set; }
-
-        //[Required]
-        //public string MaxSeat { get; set; }
-
-
-        [Required]
+        [Required(ErrorMessage = "Please select Passenger or Cargo")]
         [Display(Name = "AirCraft Category")]
         public string Type { get; set; }
 
+        [Required(ErrorMessage = "Please input a numeric value for the seating capacity")]
         [Display(Name ="Seating Capacity")]
         public int Maximum_Seating_Capacity { get; set; }
 
+        [Required(ErrorMessage = "Please input a numeric value for the cargo capacity in tons")]
         [Display(Name = "Cargo Capacity (Tons)")]
         public int Maximum_Cargo_Capacity { get; set; }
 

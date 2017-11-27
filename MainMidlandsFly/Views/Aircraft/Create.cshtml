@@ -31,6 +31,21 @@
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
 
+
+            <div id="MaxSeating" class="form-group">
+                <label asp-for="Maximum_Seating_Capacity" class="control-label"></label>
+                <input asp-for="Maximum_Seating_Capacity" class="form-control" />
+                <span asp-validation-for="Maximum_Seating_Capacity" class="text-danger"></span>
+            </div>
+            
+           <div id="MaxCargo" class="form-group">
+                <label asp-for="Maximum_Cargo_Capacity" class="control-label"></label>
+                <input asp-for="Maximum_Cargo_Capacity" class="form-control" />
+                <span asp-validation-for="Maximum_Cargo_Capacity" class="text-danger"></span>
+            </div>
+           
+
+
             @*<div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
@@ -54,4 +69,25 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#MaxSeating').hide();
+        $('#MaxCargo').hide();
+        $('#Type').change(function () {
+            if ($(this).val() == 'Passenger') {
+                $('#MaxSeating').show();
+                $('#MaxCargo').hide();
+                $('.Maximum_Cargo_Capacity').val(0)
+            }
+            else {
+                $('#MaxCargo').show();
+                $('#MaxSeating').hide();
+                ('.Maximum_Seating_Capacity').val(0)
+            }
+        });
+    });
+</script>
 }
