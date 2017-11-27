@@ -53,6 +53,9 @@ namespace MainMidlandsFly
 
             services.AddDbContext<CrewContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
+
+            services.AddDbContext<AircraftMaintenanceContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
