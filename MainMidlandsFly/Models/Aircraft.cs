@@ -34,6 +34,11 @@ namespace MainMidlandsFly.Models
         [Display(Name = "AirCraft Category")]
         public string Type { get; set; }
 
+        [Display(Name ="Seating Capacity")]
+        public int Maximum_Seating_Capacity { get; set; }
+
+        [Display(Name = "Cargo Capacity (Tons)")]
+        public int Maximum_Cargo_Capacity { get; set; }
 
         //[Required]
         [Display(Name = "Status")]
@@ -51,5 +56,6 @@ namespace MainMidlandsFly.Models
             new SelectListItem { Value = "Passenger", Text = "Passenger" },
             new SelectListItem { Value = "Cargo", Text = "Cargo" },
         };
+
     }
 }
