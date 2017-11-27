@@ -14,6 +14,8 @@ namespace MainMidlandsFly.Migrations.NewAircraft
         protected override void Down(MigrationBuilder migrationBuilder)
         {
 
+
+
         }
     }
 }

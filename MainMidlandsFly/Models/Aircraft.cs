@@ -10,6 +10,7 @@ namespace MainMidlandsFly.Models
     [Authorize]
     public class Aircraft
     {
+        [Required]
         public int ID { get; set; }
 
         [StringLength(6, MinimumLength = 4)]
@@ -27,11 +28,11 @@ namespace MainMidlandsFly.Models
         public string Type { get; set; }
 
         
-        [Required]
+      
         public string Status { get; set; }
 
         
-        [Required]
+        
         public string FlyingHoursCount { get; set; }
 
     }

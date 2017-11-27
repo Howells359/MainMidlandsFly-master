@@ -47,6 +47,9 @@ namespace MainMidlandsFly
 
             services.AddDbContext<MainFlightContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MainFlightContext")));
+            services.AddDbContext<AircraftMaintenanceContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("AircraftMaintenanceContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +76,8 @@ namespace MainMidlandsFly
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //AllocationScheduler.Start();
         }
     }
 }
