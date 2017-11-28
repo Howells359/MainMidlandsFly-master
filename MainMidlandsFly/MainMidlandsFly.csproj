@@ -38,6 +38,7 @@
     <Compile Remove="Migrations\MainFlight\20171122181638_newflightsch.cs" />
     <Compile Remove="Migrations\MainFlight\20171122181638_newflightsch.Designer.cs" />
     <Compile Remove="Migrations\MainFlight\MainFlightContextModelSnapshot.cs" />
+    <Compile Remove="Models\AircraftEdit.cs" />
     <Compile Remove="Models\Employees.cs" />
   </ItemGroup>
 

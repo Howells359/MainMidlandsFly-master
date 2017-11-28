@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MainMidlandsFly.Models
 {
     [Authorize]
-    public class Aircraft
+    public class AircraftEdit
     {
         public int ID { get; set; }
 
@@ -22,7 +22,7 @@ namespace MainMidlandsFly.Models
         [Display(Name = "Aircraft Registration ID")]
         //Utilise remote validation from Microsoft.AspNetCore.Mvc which calls a controller method to validate input value against DB field
         //RegIdValidatoris the method, Aircraft is the controller
-        [Remote("RegIdValidator", "Aircraft", AdditionalFields = "InitialRegId", ErrorMessage = "Registration ID already exists")]        
+        //[Remote("RegIdValidator", "Aircraft", ErrorMessage = "Registration ID already exists")]        
         [RegularExpression(@"^\d{3}[a-zA-Z]{3}$",
             ErrorMessage = "Aircraft Registration must be 3 numbers and 3 letters, without spaces - e.g. 123ABC")]
         public string AircraftRegNo { get; set; }
