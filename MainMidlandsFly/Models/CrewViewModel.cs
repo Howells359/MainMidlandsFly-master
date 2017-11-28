@@ -52,10 +52,10 @@ namespace MainMidlandsFly.Models
         [Display(Name = "Roles")]
         public List<SelectListItem> Roles { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value = "Ground Crew", Text = "Ground Crew" },
-            new SelectListItem { Value = "Flight Deck Crew", Text = "Flight Deck Crew" },
-            new SelectListItem { Value = "Cabin Crew", Text = "Cabin Crew"  },
-            new SelectListItem { Value = "Flight Scheduler", Text = "Flight Scheduler"  },
+            new SelectListItem { Value = "Ground", Text = "Ground" },
+            new SelectListItem { Value = "Flight", Text = "Flight" },
+            new SelectListItem { Value = "Cabin", Text = "Cabin"  },
+            new SelectListItem { Value = "Scheduler", Text = "Scheduler"  },
         };
 
         [NotMapped]

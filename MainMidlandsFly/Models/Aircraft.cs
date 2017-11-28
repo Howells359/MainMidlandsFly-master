@@ -49,7 +49,7 @@ namespace MainMidlandsFly.Models
         public int FlyingHoursCount { get; set; }
 
         [NotMapped]
-        [Display(Name = "AirCraft Categorys")]
+        [Display(Name = "AirCraft Categories")]
         public List<SelectListItem> AircraftCategory { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value = "Passenger", Text = "Passenger" },
