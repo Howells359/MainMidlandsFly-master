@@ -31,6 +31,20 @@ using Microsoft.AspNetCore.Authorization;
             return View(await _context.Crew.ToListAsync());
         }
 
+
+
+        //Testing using partial views for address lookup form
+        [HttpPost]
+        //public IActionResult AddressLookup(string houseNo, string postcode)
+        public IActionResult AddressLookup(string houseNo, string postcode)
+        {
+            string message1 = "Thanks for the Message, we will get back to you";
+            return View(message1);
+            //return JsonResult(message1);
+        }
+
+
+
         // GET: Crew/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -64,11 +78,11 @@ using Microsoft.AspNetCore.Authorization;
 
 
 
-        //POST: Crew/Create/Validate
+        //POST: Crew/Create/
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public IActionResult Create(string postcode, string HouseNo, string Name, string Type, string Email, string MobNo, DateTime DateOfBirth)
-        public IActionResult Create(CrewViewModel FullAddress, string click) //instantiate CrewViewModel object to store form values
+        public IActionResult Create(CrewViewModel FullAddress, string click)
         {
             //if (click.Equals("Find"))
             //{
@@ -299,13 +313,21 @@ using Microsoft.AspNetCore.Authorization;
             return _context.Crew.Any(e => e.CrewId == id);
         }
 
-        //Testing using partial views for address lookup form
-        //
-        //[HttpPost]
-        //public ActionResult Contact(string message)
-        //{
-        //    ViewBag.Message = "Thanks for the Message, we will get back to you";
-        //    return PartialView("_CreateAddressLookup");
-        //}
+
+
+
+        [HttpGet]       
+        public IActionResult ddNameTestView()
+        {
+            List<Crew> crew = new List<Crew>();
+
+            crew = (from Crew in _context.Crew
+                    select Crew).ToList();
+            crew.Insert(0, new Crew { CrewId = 0, Name = "Select" });
+            ViewBag.ListOfCrew = crew;
+            return View();
+        }
+
+
     }
 }

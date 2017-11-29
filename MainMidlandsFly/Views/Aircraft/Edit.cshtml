@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             
-            @*Field below to allow an Edit to pass model validation as ID isn't unique at that point but this allows overide*@
+            @*Field below is to allow an Edit to pass model validation as ID isn't unique at that point but this allows overide*@
             @Html.Hidden("InitialRegId", Model.AircraftRegNo)
 
            <div class="form-group">
@@ -76,6 +76,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
+    @*Jquery below shows and hides divs based on aircraft type*@ 
 <script type="text/javascript">
      $(document).ready(function ()
     {

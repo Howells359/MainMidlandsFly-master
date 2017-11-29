@@ -46,7 +46,9 @@
                         <input asp-for="postcode" class="form-control" />
                         <span asp-validation-for="postcode" class="text-danger"></span>
                     </div>
+                    
                 </div>
+               
                 <div class="form-group">
                     @*@Html.Partial("_CreateAddressLookup", Model)*@
 
@@ -114,7 +116,10 @@
                 <input type="submit" name="click" value="Validate" class="btn btn-default" />
              </div>
         </div>
+        
     </form>
+    <input type="button" id="addressLookup" value="Lookup" />
+    
 </div>
 
 
@@ -124,4 +129,28 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+      
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+          
+        $("#addressLookup").click(function () {
+         alert("You Clicked Me");
+            
+
+        //var houseNo = $('#houseNo').val(); //Get the values from the page you want to post
+        //var postcode = $('#postcode').val();           
+
+             $.ajax({ //Do an ajax post to the controller
+                 type: 'POST',
+                 url: "@Url.Action("AddressLookup", "Crew")",
+                 //data: { houseNo, postcode },
+
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json"
+             });
+        });
+    });
+</script>    
 }

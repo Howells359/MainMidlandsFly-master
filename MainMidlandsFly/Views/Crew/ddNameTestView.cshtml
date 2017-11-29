@@ -1,0 +1,32 @@
+﻿@model MainMidlandsFly.Models.Crew
+
+@{
+    ViewData["Title"] = "ddNameTestView";
+}
+
+
+
+<h2>ddNameTestView</h2>
+
+<h4>Crew</h4>
+<hr />
+
+@{
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ddNameTestView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CrewId" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <select asp-for="CrewId" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfCrew, "CrewId", "Name"))"> </select>             
+            </div>           
+          </form>
+    </div>
+</div>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
