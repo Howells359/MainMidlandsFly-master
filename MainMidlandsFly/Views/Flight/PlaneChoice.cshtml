@@ -28,15 +28,23 @@
 </head>
 <body color:#aaaaaa;">
 
-<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-        <h1>Pick the Type of plane that will be needed</h1>           
-<p>
+    <br/>
+    <br />
+   
+
+<div style="background-color:#e5e5e5;padding:15px;" >
+        <h4>Pick the Type of Aircraft and allocate Crew Members: </h4>           
+<p style="margin-left:40px">
+    <br />
      <a asp-controller="Flight_Aircraft_Crew_Schedule" asp-action="CreatePassenger" asp-route-id=@ViewData["flightId"]>Passenger Plane</a>
+    <br/>
+    <br />
     <a asp-controller="Flight_Aircraft_Crew_Schedule" asp-action="CreateCargo" asp-route-id=@ViewData["flightId"]>Cargo Plane</a>
 </p>
 
 </div>
 
+    <br/><br/>
 <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© Ashley Howells, Sana Elahi, Karl McCormack, Faryal Tabassam</div>
 
 </body>
