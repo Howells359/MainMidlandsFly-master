@@ -18,6 +18,19 @@ namespace MainMidlandsFly.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> ViewPassengerCraftSchedule()
+        {
+            return View(await _context.Passenger_Aircraft_Crew_Schedule.ToListAsync());
+
+        }
+
+        public async Task<IActionResult> ViewCargoCraftSchedule()
+        {
+            return View(await _context.Cargo_Aircraft_Crew_Schedule.ToListAsync());
+
+        }
+
+
         // GET: Flight_Aircraft_Crew_Schedule
         public async Task<IActionResult> Index()
         {

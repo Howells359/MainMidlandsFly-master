@@ -97,28 +97,6 @@ namespace MainMidlandsFly.Controllers
        };
 
 
-
-    //        var result = db.Aircraft
-    //.Join(db.AircraftMaintenance, a => a.ID, am => am.AircraftId, (a, am) => new { a, am })
-    //.Where(amp => amp.am.ID == id)
-    //.Join(db.Crew, amc => amc.am.Ground_Crew_Id, c => c.CrewId, (amc, c) => new { amc, c })
-    
-    //.Select(m => new AircraftMaintenance
-    //{
-    //    AircraftRegNum = m.amc.a.AircraftRegNo, // or m.ppc.pc.ProdId
-    //    CrewMemberName = m.c.Name,
-    //    Maintenance_History = m.amc.am.Maintenance_History,
-    //    Date = m.amc.am.Date,
-    //    Job_Status = m.amc.am.Job_Status
-
-    //}) .FirstOrDefault();
-
-          // AircraftMaintenance obj = db.AircraftMaintenance.Find(id);
-            //if (result == null)
-            //{
-            //    return View();
-            //  //  return HttpNotFound();
-            //}
             return View(result.FirstOrDefault(i => i.ID == id));
 
             
