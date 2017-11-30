@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MainMidlandsFly.Models
 {
@@ -16,8 +19,18 @@ namespace MainMidlandsFly.Models
         public int FlightId { get; set; }
 
         [Display(Name = "Aircraft Id")]
-        [Required]
-        public int AircraftId { get; set; }
+        //[Required]
+        public string AircraftRegNo { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Leaving Date")]
+        [DataType(DataType.DateTime)]
+        public DateTime LeavingDate { get; set; }
+        
+        [NotMapped]
+        [Display(Name = "Arriving Date")]
+        [DataType(DataType.DateTime)]
+        public DateTime ArrivalDate { get; set; }
 
         [Display(Name = "Enter First Cabin Crew Id")]
        
