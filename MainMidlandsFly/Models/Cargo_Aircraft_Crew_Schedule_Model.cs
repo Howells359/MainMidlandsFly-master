@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
 namespace MainMidlandsFly.Models
 {
-    public class Flight_Aircraft_Crew_Schedule
+    public class Cargo_Aircraft_Crew_Schedule_Model
     {
         [Key]
         public int ScheduleId { get; set; }
@@ -20,30 +19,22 @@ namespace MainMidlandsFly.Models
         public int AircraftId { get; set; }
 
         [Display(Name = "Enter First Cabin Crew Id")]
-       
+
         public int CabinCrewId { get; set; }
 
         [Display(Name = "Enter Second Cabin Crew Id")]
-        
+
         public int CabinCrewId2 { get; set; }
 
-        [Display(Name = "Enter Third Cabin Crew Id")]
-        
+        [Display(Name = "Enter Second Cabin Crew Id")]
+
         public int CabinCrewId3 { get; set; }
 
-        [Display(Name = "Enter First Flight Crew Id")]
-        
-        public int FlightCrewId1 { get; set; }
-
-        [Display(Name = "Enter Second Flight Crew Id")]
-        
-        public int FlightCrewId2 { get; set; }
-
-        [Display(Name = "Enter Third Flight Crew Id")]
-        
-        public int FlightCrewId3 { get; set; }
+        public List<Crew> CabinCrewId_list { get; set; }
+        public List<Crew> CabinCrewId2_list { get; set; }
+        public List<Crew> CabinCrewId3_list { get; set; }
+        public List<Aircraft> Aircraft_list { get; set; }
 
         public int Flying_Hours { get; set; }
-
     }
 }

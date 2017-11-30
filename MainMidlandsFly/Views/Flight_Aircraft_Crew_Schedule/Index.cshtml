@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MainMidlandsFly.Models.Flight_Aircraft_Crew_Schedule>
+﻿@model IEnumerable<MainMidlandsFly.Models.Passenger_Aircraft_Crew_Schedule>
 
 @{
     ViewData["Title"] = "Index";
@@ -24,9 +24,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.CabinCrewId2)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CabinCrewId3)
-                </th>
+                
                 <th>
                     @Html.DisplayNameFor(model => model.FlightCrewId1)
                 </th>
@@ -57,9 +55,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CabinCrewId2)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CabinCrewId3)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.FlightCrewId1)
             </td>

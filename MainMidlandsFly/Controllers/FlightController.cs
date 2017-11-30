@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MainMidlandsFly.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Routing;
 
 namespace MainMidlandsFly.Controllers
 {
@@ -50,8 +51,9 @@ namespace MainMidlandsFly.Controllers
             return View();
         }
 
-        public IActionResult PlaneChoice()
+        public IActionResult PlaneChoice(string Id)
         {
+            ViewData["flightId"] = Id;
             return View();
         }
 
@@ -75,7 +77,10 @@ namespace MainMidlandsFly.Controllers
             {
                 _context.Add(flight);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Flight_Aircraft_Crew_ScheduleController.Create));
+
+               // ViewData["flightId"] = flight.FlightId;
+                return  RedirectToAction("PlaneChoice", new { Id = flight.FlightId });
+                // return RedirectToAction(nameof(Flight_Aircraft_Crew_ScheduleController.Create));
             }
             return View();
         }
