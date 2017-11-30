@@ -12,50 +12,44 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace MainMidlandsFly
 {
     public class AllocateGroundCrewJob : IJob
     {
 
-       static string conn_string = "";
+        static string conn_string = "Server=tcp:m32com.database.windows.net,1433;Initial Catalog=m32com;Persist Security Info=False;User ID=M32comadmin;Password=7ts9tcWPnrCXtCXK;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-        public  AllocateGroundCrewJob()
+
+        //public  AllocateGroundCrewJob(AircraftMaintenanceContext context)
+        //{
+
+
+        //    //contains "Server=xxxxxx"
+        //  //  conn_string = configuration.GetConnectionString("AircraftMaintenanceContext");
+        //}
+
+
+
+
+        public async Task send_email(SendEmailModel model)
+        //  public void send_email(SendEmailModel model)
         {
-            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false);
-            var configuration = builder.Build();
 
-            //contains "Server=xxxxxx"
-            conn_string = configuration.GetConnectionString("AircraftMaintenanceContext");
-        }
-        
-       
-    
+            string json = JsonConvert.SerializeObject(model);
 
-      //  static string conn_string = "Server=tcp:m32com.database.windows.net,1433;Initial Catalog=m32com;Persist Security Info=False;User ID=M32comadmin;Password=7ts9tcWPnrCXtCXK;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
-
-        ///ConfigurationManager.ConnectionStrings["CharityManagement"].ConnectionString; 
-
-      //  public async Task send_email(SendEmailModel model)
-            public void send_email(SendEmailModel model)
-        {
-          
-
-
-            //using (var client = new HttpClient())
-            //{
-                
-            //    client.BaseAddress = new Uri("http://localhost:1379/");
-            //    client.DefaultRequestHeaders.Accept.Clear();
-            //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //    HttpResponseMessage response = client.PostAsJsonAsync(client.BaseAddress, model).Result;
-            //}
+            HttpClient httpClient = new HttpClient();
+            HttpContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage response =
+                await httpClient.PostAsync("http://697962d4.ngrok.io/api/sendemail", content);
+            string statusCode = response.StatusCode.ToString();
 
 
         }
 
-            SqlConnection con = new SqlConnection(conn_string);
+        SqlConnection con = new SqlConnection(conn_string);
 
         public void Execute(IJobExecutionContext context)
         {
@@ -63,11 +57,11 @@ namespace MainMidlandsFly
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("Select ID, AircraftRegNo, Type from Aircraft where Type = 'C' AND FlyingHoursCount >= 200 AND Status = 'AVAILABLE'", con);
+                SqlCommand cmd = new SqlCommand("Select ID, AircraftRegNo, Type from Aircraft where FlyingHoursCount >= 200 AND Status = 'Available'", con);
 
                 SqlDataReader rd = cmd.ExecuteReader();
 
-                rd = cmd.ExecuteReader();
+
 
                 List<Aircraft> aircrafts = new List<Aircraft>();
 
@@ -90,16 +84,17 @@ namespace MainMidlandsFly
 
                     con.Open();
 
-                    SqlCommand cmd2 = new SqlCommand("Select CrewId, Email, Name from Crew where Type = 'GROUND' AND Status = 'AVAILABLE'", con);
+                    SqlCommand cmd2 = new SqlCommand("Select CrewId, Email, Name from Crew where Type = 'Ground' AND Status = 'Available'", con);
                     SqlDataReader rd2 = cmd2.ExecuteReader();
-                    rd2.Read();
+
 
 
                     while (rd2.Read())
                     {
                         Crew x = new Crew();
-                        x.CrewId = Int32.Parse(rd["ID"].ToString());
-                        x.Email = rd["Email"].ToString();
+                        x.CrewId = Int32.Parse(rd2["CrewId"].ToString());
+                        x.Email = rd2["Email"].ToString();
+                        x.Name = rd2["Name"].ToString();
 
                         crew_members.Add(x);
                     }
@@ -108,13 +103,13 @@ namespace MainMidlandsFly
                     con.Close();
 
                     List<Crew> suitable_crew_members = new List<Crew>();
-                    if (crew_members.Count >= 6)
+                    if (crew_members.Count >= 10)
                     {
 
-                       
+
                         con.Open();
                         StringBuilder querybuilder = new StringBuilder();
-                        querybuilder.Append("Select am.Ground_Crew_Id, c.Email,c.Name  from AircraftMaintenance am, Crew c where am.Ground_Crew_Id=c.Crew_Id  AND am.Ground_Crew_Id in (");
+                        querybuilder.Append("Select distinct am.Ground_Crew_Id, c.Email,c.Name from AircraftMaintenance am, Crew c where am.Ground_Crew_Id=c.CrewId  AND am.Ground_Crew_Id in (");
                         for (int m = 0; m < crew_members.Count; m++)
                         {
                             if (m == 0)
@@ -127,15 +122,13 @@ namespace MainMidlandsFly
 
                         }
 
-                        querybuilder.Append(") AND last(AircraftId)!=" + aircrafts.ElementAt(i).ID);
+                        querybuilder.Append(") AND (Select MAX(AircraftId) from AircraftMaintenance where Ground_Crew_Id = am.Ground_Crew_Id)!=" + aircrafts.ElementAt(i).ID);
 
 
 
 
                         SqlCommand cmd6 = new SqlCommand(querybuilder.ToString(), con);
                         SqlDataReader rd6 = cmd2.ExecuteReader();
-                        rd6.Read();
-
 
                         while (rd6.Read())
                         {
@@ -163,23 +156,24 @@ namespace MainMidlandsFly
                         //////////////////
 
                         List<Crew> selected_members;
-                        if (suitable_crew_members.Count<3)
-                {
-                    selected_members =
-                            crew_members.Take(3).ToList();
-                }
-                else{ 
-                selected_members =
-                 suitable_crew_members.Take(3).ToList();
-            }
+                        if (suitable_crew_members.Count < 5)
+                        {
+                            selected_members =
+                                    crew_members.Take(5).ToList();
+                        }
+                        else
+                        {
+                            selected_members =
+                             suitable_crew_members.Take(5).ToList();
+                        }
 
                         con.Open();
 
-                        SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'UNAVAILABLE' Where Crew_Id IN (" + selected_members.ElementAt(0).CrewId + "," + selected_members.ElementAt(1).CrewId + "," + selected_members.ElementAt(2).CrewId + ")", con);
+                        SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'Occupied' Where Crew_Id IN (" + selected_members.ElementAt(0).CrewId + "," + selected_members.ElementAt(1).CrewId + "," + selected_members.ElementAt(2).CrewId + "," + selected_members.ElementAt(3).CrewId + "," + selected_members.ElementAt(4).CrewId + ")", con);
 
                         if (cmd3.ExecuteNonQuery() > 0)
                         {
-                            for (int l = 0; l < 3; l++)
+                            for (int l = 0; l < 5; l++)
 
                             {
                                 SendEmailModel model = new SendEmailModel();
@@ -189,7 +183,7 @@ namespace MainMidlandsFly
                                 model.emp_email = selected_members.ElementAt(l).Email;
                                 model.emp_name = selected_members.ElementAt(l).Name;
                                 model.date = DateTime.Now.ToString();
-                                send_email(model);
+                                send_email(model).Wait();
                             }
                         }
                         else
@@ -202,7 +196,7 @@ namespace MainMidlandsFly
 
 
 
-                        for (int j = 1; j < 4; j++)
+                        for (int j = 0; j < 5; j++)
                         {
                             con.Open();
                             string insert_query = "INSERT INTO AircraftMaintenance(AircraftId, Ground_Crew_Id, Date) Values (" + aircrafts.ElementAt(i).ID + "," + selected_members.ElementAt(j).CrewId + "," + "GETDATE() )";
@@ -228,17 +222,18 @@ namespace MainMidlandsFly
 
                     }
 
-                    else if (crew_members.Count <= 2)
+                    else if (crew_members.Count <= 4)
                     {
                         List<Crew> selected_members = crew_members.ToList();
-                        con.Open();
+
 
                         for (int k = 0; k < selected_members.Count; k++)
                         {
-                            SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'UNAVAILABLE' Where Crew_Id = " + selected_members.ElementAt(k).CrewId, con);
-
+                            SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'Occupied' Where CrewId = " + selected_members.ElementAt(k).CrewId, con);
+                            con.Open();
                             if (cmd3.ExecuteNonQuery() > 0)
                             {
+
                                 SendEmailModel model = new SendEmailModel();
 
                                 model.air_craft_num = aircrafts.ElementAt(i).AircraftRegNo;
@@ -246,7 +241,9 @@ namespace MainMidlandsFly
                                 model.emp_email = selected_members.ElementAt(k).Email;
                                 model.emp_name = selected_members.ElementAt(k).Name;
                                 model.date = DateTime.Now.ToString();
-                                send_email(model);
+
+
+                                send_email(model).Wait();
 
                             }
                             else
@@ -255,11 +252,11 @@ namespace MainMidlandsFly
                             con.Close();
                         }
 
-                        for (int j = 1; j < selected_members.Count; j++)
+                        for (int j = 0; j < selected_members.Count; j++)
                         {
                             con.Open();
                             string insert_query = "INSERT INTO AircraftMaintenance(AircraftId, Ground_Crew_Id, Date) Values(" + aircrafts.ElementAt(i).ID + ", " + selected_members.ElementAt(j).CrewId + ", " + "GETDATE())";
-                            
+
                             SqlCommand cmd4 = new SqlCommand(insert_query, con);
 
                             if (cmd4.ExecuteNonQuery() > 0)
@@ -275,31 +272,44 @@ namespace MainMidlandsFly
 
                     else
                     {
-                        List<Crew> selected_members = crew_members.Take(3).ToList();
+                        List<Crew> selected_members = crew_members.Take(5).ToList();
 
                         con.Open();
 
-                        SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'UNAVAILABLE' Where Crew_Id IN ("+ selected_members.ElementAt(0).CrewId +","+ selected_members.ElementAt(1).CrewId+ ","+ selected_members.ElementAt(2).CrewId +")", con);
+                        SqlCommand cmd3 = new SqlCommand("UPDATE Crew SET Status = 'Occupied' Where CrewId IN (" + selected_members.ElementAt(0).CrewId + "," + selected_members.ElementAt(1).CrewId + "," + selected_members.ElementAt(2).CrewId + "," + selected_members.ElementAt(3).CrewId + "," + selected_members.ElementAt(4).CrewId + ")", con);
 
                         if (cmd3.ExecuteNonQuery() > 0)
                         {
+                            for (int l = 0; l < 5; l++)
+
+                            {
+                                SendEmailModel model = new SendEmailModel();
+
+                                model.air_craft_num = aircrafts.ElementAt(i).AircraftRegNo;
+                                model.air_craft_type = aircrafts.ElementAt(i).Type;
+                                model.emp_email = selected_members.ElementAt(l).Email;
+                                model.emp_name = selected_members.ElementAt(l).Name;
+                                model.date = DateTime.Now.ToString();
+                                send_email(model).Wait();
+                            }
+
 
                         }
                         else
                             return;
-                        
+
                         con.Close();
 
                         /////
 
 
-                        
-                      
-                        for (int j = 1; j < 4; j++)
+
+
+                        for (int j = 0; j < 5; j++)
                         {
                             con.Open();
                             string insert_query = "INSERT INTO AircraftMaintenance(AircraftId, Ground_Crew_Id, Date) Values (" + aircrafts.ElementAt(i).ID + "," + selected_members.ElementAt(j).CrewId + "," + "GETDATE() )";
-                           
+
                             SqlCommand cmd4 = new SqlCommand(insert_query, con);
 
                             if (cmd4.ExecuteNonQuery() > 0)
@@ -313,7 +323,7 @@ namespace MainMidlandsFly
 
 
 
-                  
+
 
 
                     }
@@ -321,7 +331,7 @@ namespace MainMidlandsFly
                     /////////////
                     con.Open();
 
-                    SqlCommand cmd5 = new SqlCommand("UPDATE Aircraft SET Status = 'UNAVAILABLE', FlyingHoursCount = 0 Where ID=" + aircrafts.ElementAt(i).ID + ";", con);
+                    SqlCommand cmd5 = new SqlCommand("UPDATE Aircraft SET Status = 'Occupied', FlyingHoursCount = 0 Where ID=" + aircrafts.ElementAt(i).ID + ";", con);
 
                     if (cmd5.ExecuteNonQuery() > 0)
                     { }
@@ -331,9 +341,9 @@ namespace MainMidlandsFly
                     con.Close();
 
 
-                    con.Open();
 
-                  
+
+
 
                 }
                 //response.status = true;
@@ -344,7 +354,7 @@ namespace MainMidlandsFly
             catch (Exception ex)
             {
 
-                
+
                 //response.status = false;
                 //response.message = ex.Message;
             }
