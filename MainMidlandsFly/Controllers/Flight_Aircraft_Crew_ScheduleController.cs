@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MainMidlandsFly.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
+    //[Authorize(Roles = "Admin, Crew")]
     public class Flight_Aircraft_Crew_ScheduleController : Controller
     {
         private readonly MainFlightContext _context;

@@ -16,7 +16,7 @@ using MainMidlandsFly.Services;
 
 namespace MainMidlandsFly.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Crew")]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {

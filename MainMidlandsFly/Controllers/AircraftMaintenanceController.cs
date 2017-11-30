@@ -10,6 +10,7 @@ using System.Net;
 
 namespace MainMidlandsFly.Controllers
 {
+    //[Authorize(Roles = "Admin, Crew")]
     public class AircraftMaintenanceController : Controller
     {
         AircraftMaintenanceContext db ;
