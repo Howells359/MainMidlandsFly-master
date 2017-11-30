@@ -56,6 +56,7 @@ namespace MainMidlandsFly
 
             services.AddDbContext<AircraftMaintenanceContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
+            services.AddSession();
 
             AllocateGroundCrewJob job = new AllocateGroundCrewJob();
 

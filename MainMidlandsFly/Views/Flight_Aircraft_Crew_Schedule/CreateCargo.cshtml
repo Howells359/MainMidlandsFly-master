@@ -1,15 +1,17 @@
-﻿@model MainMidlandsFly.Models.Flight_Aircraft_Crew_Schedule
+﻿@model MainMidlandsFly.Models.Cargo_Aircraft_Crew_Schedule_Model
 
 @{
     ViewData["Title"] = "Create";
 }
 
-
-<h4>Pick the crew that will be working on the job</h4>
+<br/>
+<h1>Cargo Aircraft</h1>
+<br/>
+<h4>Select Crew memebers for Cargo Aircraft</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="InsertCargoSchedule">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FlightId" class="control-label"></label>
@@ -18,23 +20,30 @@
             </div>
             <div class="form-group">
                 <label asp-for="AircraftId" class="control-label"></label>
-                <input asp-for="AircraftId" class="form-control" />
+                <select asp-for="AircraftId" class="form-control" asp-items="@(new SelectList(Model.Aircraft_list, "ID", "AircraftRegNo"))"> </select>
+                @*<input asp-for="AircraftId" class="form-control" />*@
                 <span asp-validation-for="AircraftId" class="text-danger"></span>
             </div>
+            
+
             <div class="form-group">
-                <label asp-for="FlightCrewId1" class="control-label"></label>
-                <input asp-for="FlightCrewId1" class="form-control" />
-                <span asp-validation-for="FlightCrewId1" class="text-danger"></span>
+                <label asp-for="CabinCrewId" class="control-label"></label>
+                <select asp-for="CabinCrewId" class="form-control" asp-items="@(new SelectList(Model.CabinCrewId_list, "CrewId", "Name"))"> </select>
+                @*<input asp-for="CabinCrewId" class="form-control" />*@
+                <span asp-validation-for="CabinCrewId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FlightCrewId2" class="control-label"></label>
-                <input asp-for="FlightCrewId2" class="form-control" />
-                <span asp-validation-for="FlightCrewId2" class="text-danger"></span>
+                <label asp-for="CabinCrewId2" class="control-label"></label>
+                <select asp-for="CabinCrewId2" class="form-control" asp-items="@(new SelectList(Model.CabinCrewId2_list, "CrewId", "Name"))"> </select>
+                @*<input asp-for="CabinCrewId2" class="form-control" />*@
+                <span asp-validation-for="CabinCrewId2" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="FlightCrewId3" class="control-label"></label>
-                <input asp-for="FlightCrewId3" class="form-control" />
-                <span asp-validation-for="FlightCrewId3" class="text-danger"></span>
+                <label asp-for="CabinCrewId3" class="control-label"></label>
+                <select asp-for="CabinCrewId3" class="form-control" asp-items="@(new SelectList(Model.CabinCrewId3_list, "CrewId", "Name"))"> </select>
+                @*<input asp-for="CabinCrewId" class="form-control" />*@
+                <span asp-validation-for="CabinCrewId3" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Flying_Hours" class="control-label"></label>
@@ -49,8 +58,9 @@
 </div>
 
 <div>
-    <a asp-controller ="Flight_Aircraft_Crew_Schedule" asp-action ="Index">Back to List</a>
+    <a asp-controller="Flight_Aircraft_Crew_ScheduleController" asp-action="Index">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

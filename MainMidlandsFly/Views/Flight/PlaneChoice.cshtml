@@ -31,8 +31,8 @@
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
         <h1>Pick the Type of plane that will be needed</h1>           
 <p>
-     <a asp-controller="Flight" asp-action="CreateForPassenger">Passenger Plane</a>
-     <a asp-controller="Flight" asp-action="CreateForCargo">Cargo Plane</a>
+     <a asp-controller="Flight_Aircraft_Crew_Schedule" asp-action="CreatePassenger" asp-route-id=@ViewData["flightId"]>Passenger Plane</a>
+    <a asp-controller="Flight_Aircraft_Crew_Schedule" asp-action="CreateCargo" asp-route-id=@ViewData["flightId"]>Cargo Plane</a>
 </p>
 
 </div>

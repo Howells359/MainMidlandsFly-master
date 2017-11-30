@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-<h4>AircraftMaintenance</h4>
+<h4>Aircraft Maintenance</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,9 +48,28 @@
             </div>
             <div class="form-group">
                 <label asp-for="Job_Status" class="control-label"></label>
-                @Html.EditorFor(model => model.Job_Status)
+                @*@Html.EditorFor(model => model.Job_Status)*@
+
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Completed",
+                        Value = "Completed"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Pending",
+                        Value = "Pending",
+                       
+                    });
+                  
+                }
+
+                @Html.DropDownListFor(model => model.Job_Status, listItems, "-- Select Status --")
+
                 @*<input asp-for="Job_Status" class="form-control" />*@
-                <span asp-validation-for="Job_Status" class="text-danger"></span>
+                @*<span asp-validation-for="Job_Status" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
