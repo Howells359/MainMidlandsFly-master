@@ -4,8 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
+<br />
 <h2>Edit</h2>
-
+<br />
 <h4>Aircraft Maintenance</h4>
 <hr />
 <div class="row">
@@ -25,29 +26,33 @@
             </div>
             <div class="form-group">
                 <label asp-for="AircraftRegNum" class="control-label"></label>
+                <br />
                 @Html.TextBoxFor(model => model.AircraftRegNum, new { disabled = "true" })
                 @*@Html.EditorFor(model => model.AircraftRegNum)*@
                 <span asp-validation-for="AircraftRegNum" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CrewMemberName" class="control-label"></label>
+                <br />
                 @Html.TextBoxFor(model => model.CrewMemberName, new { disabled = "true" })
                 @*@Html.EditorFor(model => model.CrewMemberName)*@
                 <span asp-validation-for="CrewMemberName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Maintenance_History" class="control-label"></label>
-               
+                <br />
                 @Html.EditorFor(model => model.Maintenance_History)
                 <span asp-validation-for="Maintenance_History" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
-                @Html.EditorFor(model => model.Date)
+                <br />
+                @Html.EditorFor(model => model.Date, new { disabled = "true" })
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Job_Status" class="control-label"></label>
+                <br />
                 @*@Html.EditorFor(model => model.Job_Status)*@
 
                 @{

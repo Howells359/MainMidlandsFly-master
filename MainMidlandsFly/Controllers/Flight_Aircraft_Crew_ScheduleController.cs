@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MainMidlandsFly.Controllers
 {
-    //[Authorize(Roles = "Admin, Crew")]
+    [Authorize(Roles = "Admin, Crew")]
     public class Flight_Aircraft_Crew_ScheduleController : Controller
     {
         private readonly MainFlightContext _context;
@@ -68,18 +68,18 @@ namespace MainMidlandsFly.Controllers
                         select Aircraft).Where(a => a.Type == "Cargo" && a.Status == "Available").ToList();
             model.Aircraft_list = aircraft;
 
-            List<Crew> cabin_crew = new List<Crew>();
+            List<Crew> flight_crew = new List<Crew>();
 
-            cabin_crew = (from Crew in _context.Crew
-                          select Crew).Where(c => c.Type == "Cabin" && c.Status == "Available").ToList();
+            flight_crew = (from Crew in _context.Crew
+                          select Crew).Where(c => c.Type == "Flight" && c.Status == "Available").ToList();
 
            
 
-            model.CabinCrewId_list = cabin_crew;
+            model.FlightCrewId_list = flight_crew;
 
-            model.CabinCrewId2_list = cabin_crew;
+            model.FlightCrewId2_list = flight_crew;
 
-            model.CabinCrewId3_list = cabin_crew;
+            model.FlightCrewId3_list = flight_crew;
 
          
             model.FlightId = Int32.Parse(id);
@@ -115,7 +115,7 @@ namespace MainMidlandsFly.Controllers
 
             model.FlightCrewId2_list = flight_crew;
 
-            model.FlightCrewId3_list = flight_crew;
+            model.CabinCrewId3_list = cabin_crew;
             model.FlightId = Int32.Parse(id);
 
             return View(model);
@@ -126,7 +126,7 @@ namespace MainMidlandsFly.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> InsertPassengerSchedule([Bind("FlightId,AircraftId,CabinCrewId,CabinCrewId2,FlightCrewId1,FlightCrewId2,FlightCrewId3,Flying_Hours")] Passenger_Flight_Crew_Schedule_Model schedule)
+        public async Task<IActionResult> InsertPassengerSchedule([Bind("FlightId,AircraftId,CabinCrewId,CabinCrewId2,FlightCrewId1,FlightCrewId2,CabinCrewId3,Flying_Hours")] Passenger_Flight_Crew_Schedule_Model schedule)
         {
             if (ModelState.IsValid)
             {
@@ -137,15 +137,16 @@ namespace MainMidlandsFly.Controllers
                 m.CabinCrewId2 = schedule.CabinCrewId2;
                 m.FlightCrewId1 = schedule.FlightCrewId1;
                 m.FlightCrewId2 = schedule.FlightCrewId2;
-                m.FlightCrewId3 = schedule.FlightCrewId3;
+                m.CabinCrewId3 = schedule.CabinCrewId3;
 
 
                 _context.Add(m);
                 await _context.SaveChangesAsync();
 
                 //  return RedirectToAction("CreateCargo", "Flight_Aircraft_Crew_Schedule", new { id = m.FlightId.ToString()});
+                
 
-                return RedirectToAction("PlaneChoice", "Flight");
+                return RedirectToAction("PlaneChoice", "Flight", new { Id = schedule.FlightId.ToString() });
                // return RedirectToAction(nameof(PlaneChoice));
 
             }
@@ -153,21 +154,21 @@ namespace MainMidlandsFly.Controllers
         }
 
 
-        public async Task<IActionResult> InsertCargoSchedule([Bind("FlightId,AircraftId,CabinCrewId,CabinCrewId2,CabinCrewId3,Flying_Hours")] Cargo_Aircraft_Crew_Schedule_Model schedule)
+        public async Task<IActionResult> InsertCargoSchedule([Bind("FlightId,AircraftId,FlightCrewId,FlightCrewId2,FlightCrewId3,Flying_Hours")] Cargo_Aircraft_Crew_Schedule_Model schedule)
         {
             if (ModelState.IsValid)
             {
                 Cargo_Aircraft_Crew_Schedule m = new Cargo_Aircraft_Crew_Schedule();
                 m.FlightId = schedule.FlightId;
                 m.AircraftId = schedule.AircraftId;
-                m.CabinCrewId = schedule.CabinCrewId;
-                m.CabinCrewId2 = schedule.CabinCrewId2;
-                m.CabinCrewId3 = schedule.CabinCrewId3;
+                m.FlightCrewId = schedule.FlightCrewId;
+                m.FlightCrewId2 = schedule.FlightCrewId2;
+                m.FlightCrewId3 = schedule.FlightCrewId3;
 
 
                 _context.Add(m);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home", new { Id = schedule.FlightId.ToString() });
             }
             return View(schedule);
         }

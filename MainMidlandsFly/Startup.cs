@@ -59,8 +59,8 @@ namespace MainMidlandsFly
             services.AddSession();
 
             AllocateGroundCrewJob job = new AllocateGroundCrewJob();
-
-            //AllocationScheduler.Start();
+            //job.Execute();
+           AllocationScheduler.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -22,17 +22,6 @@ namespace MainMidlandsFly
         static string conn_string = "Server=tcp:m32com.database.windows.net,1433;Initial Catalog=m32com;Persist Security Info=False;User ID=M32comadmin;Password=7ts9tcWPnrCXtCXK;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 
-        //public  AllocateGroundCrewJob(AircraftMaintenanceContext context)
-        //{
-
-
-        //    //contains "Server=xxxxxx"
-        //  //  conn_string = configuration.GetConnectionString("AircraftMaintenanceContext");
-        //}
-
-
-
-
         public async Task send_email(SendEmailModel model)
         //  public void send_email(SendEmailModel model)
         {
@@ -43,7 +32,7 @@ namespace MainMidlandsFly
             HttpContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response =
-                await httpClient.PostAsync("http://697962d4.ngrok.io/api/sendemail", content);
+                await httpClient.PostAsync("http://1655d674.ngrok.io/api/sendemail", content);
             string statusCode = response.StatusCode.ToString();
 
 

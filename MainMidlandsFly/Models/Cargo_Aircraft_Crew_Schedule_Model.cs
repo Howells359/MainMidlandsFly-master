@@ -18,21 +18,26 @@ namespace MainMidlandsFly.Models
         [Required]
         public int AircraftId { get; set; }
 
-        [Display(Name = "Enter First Cabin Crew Id")]
+       
 
-        public int CabinCrewId { get; set; }
+        public int FlightCrewId { get; set; }
 
-        [Display(Name = "Enter Second Cabin Crew Id")]
+       
 
-        public int CabinCrewId2 { get; set; }
+        public int FlightCrewId2 { get; set; }
 
-        [Display(Name = "Enter Second Cabin Crew Id")]
+      
 
-        public int CabinCrewId3 { get; set; }
+        public int FlightCrewId3 { get; set; }
 
-        public List<Crew> CabinCrewId_list { get; set; }
-        public List<Crew> CabinCrewId2_list { get; set; }
-        public List<Crew> CabinCrewId3_list { get; set; }
+        [Display(Name = "First Flight Crew Id")]
+        public List<Crew> FlightCrewId_list { get; set; }
+
+        [Display(Name = "Second Flight Crew Id")]
+        public List<Crew> FlightCrewId2_list { get; set; }
+
+        [Display(Name = "Third Flight Crew Id")]
+        public List<Crew> FlightCrewId3_list { get; set; }
         public List<Aircraft> Aircraft_list { get; set; }
 
         public int Flying_Hours { get; set; }

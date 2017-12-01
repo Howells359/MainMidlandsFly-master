@@ -19,12 +19,14 @@ namespace MainMidlandsFly
             ITrigger trigger = TriggerBuilder.Create()
                 .WithDailyTimeIntervalSchedule
                   (s =>
-                     s.WithIntervalInHours(24)
+                     s.WithIntervalInHours(2)
                     //s.WithIntervalInSeconds(20)
                     .OnEveryDay()
                     .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
                   )
                 .Build();
+
+            // .RepeatForever())
 
             scheduler.ScheduleJob(job, trigger);
         }
@@ -32,3 +34,5 @@ namespace MainMidlandsFly
 
     }
 }
+
+
