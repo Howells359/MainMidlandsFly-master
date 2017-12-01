@@ -13,6 +13,7 @@ using MainMidlandsFly.Data;
 using MainMidlandsFly.Models;
 using MainMidlandsFly.Services;
 
+
 namespace MainMidlandsFly
 {
     public class Startup
@@ -58,9 +59,8 @@ namespace MainMidlandsFly
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
             services.AddSession();
 
-            AllocateGroundCrewJob job = new AllocateGroundCrewJob();
-            //job.Execute();
-           AllocationScheduler.Start();
+            AllocationScheduler.Start();
+            //  AllocateSchedulerNew.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +87,9 @@ namespace MainMidlandsFly
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+          
+
         }
     }
 }

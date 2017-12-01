@@ -11,26 +11,32 @@ namespace MainMidlandsFly
     {
         public static void Start()
         {
-            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
-            scheduler.Start();
+            try
+            {
+                ISchedulerFactory sf = new StdSchedulerFactory();
+                IScheduler sc = sf.GetScheduler();
 
-            IJobDetail job = JobBuilder.Create<AllocateGroundCrewJob>().Build();
 
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithDailyTimeIntervalSchedule
-                  (s =>
-                     s.WithIntervalInHours(2)
-                    //s.WithIntervalInSeconds(20)
-                    .OnEveryDay()
-                    .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
-                  )
-                .Build();
+                IJobDetail job = JobBuilder.Create<AllocateGroundCrewJob>().Build();
 
-            // .RepeatForever())
+                ITrigger trigger = TriggerBuilder.Create()
+                    .WithDailyTimeIntervalSchedule
+                      (s =>
+                         s.WithIntervalInHours(2)
+                        //s.WithIntervalInSeconds(20)
+                        .OnEveryDay()
+                        .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
+                      )
+                    .Build();
 
-            scheduler.ScheduleJob(job, trigger);
+                // .RepeatForever())
+
+                sc.ScheduleJob(job, trigger);
+                sc.Start();
+
+            }
+            catch { }
         }
-
 
     }
 }

@@ -51,6 +51,9 @@
 
 
   <ItemGroup>
+    <PackageReference Include="FakeHttpContext" Version="0.4.0" />
+    <PackageReference Include="ITHit.WebDAV.Server.Web" Version="6.0.4012" />
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
@@ -58,9 +61,12 @@
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.3" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Nancy.AspNetCore.Http" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Quartz" Version="2.6.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.3" />
+    <PackageReference Include="SystemWebPackage" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
