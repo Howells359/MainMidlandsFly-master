@@ -59,7 +59,7 @@ namespace MainMidlandsFly
                     options.UseSqlServer(Configuration.GetConnectionString("AirlineAppDatabase")));
             services.AddSession();
 
-            AllocationScheduler.Start();
+           
             //  AllocateSchedulerNew.Start();
         }
 
